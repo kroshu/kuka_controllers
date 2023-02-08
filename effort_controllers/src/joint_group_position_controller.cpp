@@ -61,7 +61,7 @@ JointGroupPositionController::state_interface_configuration() const
   controller_interface::InterfaceConfiguration state_interfaces_config;
   state_interfaces_config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
 
-  for (const auto & joint : joint_names_) {
+  for (const auto & joint : params_.joints) {
     state_interfaces_config.names.push_back(joint + "/position");
   }
 
@@ -73,15 +73,14 @@ CallbackReturn JointGroupPositionController::on_configure(
 {
   auto ret = ForwardCommandController::on_configure(previous_state);
 
-  fprintf(stderr, "got %zu joints\n", joint_names_.size());
-  pids_.resize(joint_names_.size());
+  pids_.resize(params_.joints.size());
   std::string gains_prefix = "gains";
-  for (auto k = 0u; k < joint_names_.size(); ++k) {
-    auto p = get_node()->get_parameter(gains_prefix + "." + joint_names_[k] + ".p").as_double();
-    auto i = get_node()->get_parameter(gains_prefix + "." + joint_names_[k] + ".i").as_double();
-    auto d = get_node()->get_parameter(gains_prefix + "." + joint_names_[k] + ".d").as_double();
+  for (auto k = 0u; k < params_.joints.size(); ++k) {
+    auto p = get_node()->get_parameter(gains_prefix + "." + params_.joints[k] + ".p").as_double();
+    auto i = get_node()->get_parameter(gains_prefix + "." + params_.joints[k] + ".i").as_double();
+    auto d = get_node()->get_parameter(gains_prefix + "." + params_.joints[k] + ".d").as_double();
     pids_[k].initPid(p, i, d, 0.0, 0.0);
-    fprintf(stderr, "got gains for %s as (%f, %f, %f)\n", joint_names_[k].c_str(), p, i, d);
+    fprintf(stderr, "got gains for %s as (%f, %f, %f)\n", params_.joints[k].c_str(), p, i, d);
   }
 
   return ret;
