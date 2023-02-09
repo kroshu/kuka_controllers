@@ -39,15 +39,12 @@ JointGroupPositionController::on_init()
     return ret;
   }
 
-  try
-  {
+  try {
     // Explicitly set the interface parameter declared by the forward_command_controller
     // to match the value set in the JointGroupEffortController constructor.
     get_node()->set_parameter(
       rclcpp::Parameter("interface_name", hardware_interface::HW_IF_EFFORT));
-  }
-  catch (const std::exception & e)
-  {
+  } catch (const std::exception & e) {
     fprintf(stderr, "Exception thrown during init stage with message: %s \n", e.what());
     return controller_interface::CallbackReturn::ERROR;
   }
@@ -111,10 +108,12 @@ CallbackReturn JointGroupPositionController::on_deactivate(
   return ret;
 }
 
-controller_interface::return_type JointGroupPositionController::update(const rclcpp::Time & time, const rclcpp::Duration & period)
+controller_interface::return_type JointGroupPositionController::update(
+  const rclcpp::Time & time,
+  const rclcpp::Duration & period)
 {
   auto per = std::chrono::duration_cast<std::chrono::nanoseconds>(
-      std::chrono::system_clock::now() - t0).count();
+    std::chrono::system_clock::now() - t0).count();
   t0 = std::chrono::system_clock::now();
 
   auto joint_position_commands = *rt_command_ptr_.readFromRT();
@@ -131,8 +130,7 @@ controller_interface::return_type JointGroupPositionController::update(const rcl
     return controller_interface::return_type::ERROR;
   }
 
-  for(auto i = 0u; i < joint_names_.size(); ++i)
-  {
+  for (auto i = 0u; i < params_.joints.size(); ++i) {
     double command_position = joint_position_commands->data[i];
     double current_position = state_interfaces_[i].get_value();
     auto error = angles::shortest_angular_distance(current_position, command_position);
