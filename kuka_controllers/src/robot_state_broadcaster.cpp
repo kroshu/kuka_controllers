@@ -28,7 +28,7 @@ RobotStateBroadcaster::command_interface_configuration()
 const
 {
   return controller_interface::InterfaceConfiguration{controller_interface::
-    interface_configuration_type::NONE};
+    interface_configuration_type::INDIVIDUAL};
 }
 
 controller_interface::InterfaceConfiguration RobotStateBroadcaster::state_interface_configuration()
