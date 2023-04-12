@@ -41,15 +41,18 @@ const
 controller_interface::CallbackReturn
 ControlModeHandler::on_configure(const rclcpp_lifecycle::State &)
 {
-  control_mode_ = utils::to_control_mode(
-    get_node()->get_parameter(
-      "control_mode").as_int());
+  // control_mode_ = utils::to_control_mode(
+  //   get_node()->get_parameter(
+  //     "control_mode").as_int());
 
   control_mode_subscriber_ = get_node()->create_subscription<std_msgs::msg::UInt32>(
     "control_mode", rclcpp::SystemDefaultsQoS(),
     [this](const std_msgs::msg::UInt32::SharedPtr msg) {
       control_mode_ = kuka_motion_external_ExternalControlMode(msg->data);
+      RCLCPP_INFO(get_node()->get_logger(), "Control mode changed to %u", msg->data);
     });
+
+  RCLCPP_INFO(get_node()->get_logger(), "CONTROL_MODE_HANDLER configured");
   return controller_interface::CallbackReturn::SUCCESS;
 }
 

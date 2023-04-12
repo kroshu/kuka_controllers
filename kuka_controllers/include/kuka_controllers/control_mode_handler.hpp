@@ -55,7 +55,8 @@ public:
 
 private:
   rclcpp::Subscription<std_msgs::msg::UInt32>::SharedPtr control_mode_subscriber_;
-  nanopb::kuka::motion::external::ExternalControlMode control_mode_;
+  nanopb::kuka::motion::external::ExternalControlMode control_mode_ =
+    nanopb::kuka::motion::external::ExternalControlMode::kUnspecified;
 
 };
 }  // namespace kuka_controllers
