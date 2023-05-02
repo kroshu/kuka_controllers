@@ -13,7 +13,6 @@
 // limitations under the License.
 
 #include "kuka_controllers/control_mode_handler.hpp"
-#include "kuka_controllers/enum_converter.hpp"
 
 namespace kuka_controllers
 {
@@ -41,24 +40,26 @@ const
 controller_interface::CallbackReturn
 ControlModeHandler::on_configure(const rclcpp_lifecycle::State &)
 {
-  // control_mode_ = utils::to_control_mode(
-  //   get_node()->get_parameter(
-  //     "control_mode").as_int());
-
   control_mode_subscriber_ = get_node()->create_subscription<std_msgs::msg::UInt32>(
     "control_mode", rclcpp::SystemDefaultsQoS(),
     [this](const std_msgs::msg::UInt32::SharedPtr msg) {
       control_mode_ = kuka_motion_external_ExternalControlMode(msg->data);
       RCLCPP_INFO(get_node()->get_logger(), "Control mode changed to %u", msg->data);
     });
-
-  RCLCPP_INFO(get_node()->get_logger(), "CONTROL_MODE_HANDLER configured");
+  RCLCPP_INFO(get_node()->get_logger(), "Control mode handler configured");
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
 controller_interface::CallbackReturn
 ControlModeHandler::on_activate(const rclcpp_lifecycle::State &)
 {
+  if (control_mode_ <= nanopb::kuka::motion::external::ExternalControlMode::kUnspecified) {
+    RCLCPP_WARN(
+      get_node()->get_logger(),
+      "Control mode unspecified, It is set to position control");
+    control_mode_ = nanopb::kuka::motion::external::ExternalControlMode::kPositionControl;
+  }
+
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
@@ -72,8 +73,7 @@ controller_interface::return_type ControlModeHandler::update(
   const rclcpp::Time &,
   const rclcpp::Duration &)
 {
-
-  command_interfaces_[0].set_value(control_mode_);
+  command_interfaces_[0].set_value(static_cast<double>(control_mode_));
   return controller_interface::return_type::OK;
 }
 
