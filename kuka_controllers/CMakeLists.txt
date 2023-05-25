@@ -24,10 +24,6 @@ target_include_directories(${PROJECT_NAME} PRIVATE
   include
 )
 
-target_include_directories(${PROJECT_NAME} PRIVATE
-  utils
-)
-
 ament_target_dependencies(${PROJECT_NAME} rclcpp controller_interface std_msgs kuka_driver_interfaces
 )
 
