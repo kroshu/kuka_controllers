@@ -34,6 +34,7 @@ jobs:
         - ROS_REPO: ros
           BUILDER: colcon
           ANALYZER: sonarqube
+          UPSTREAM_WORKSPACE: 'github:kroshu/ros2_kuka_drivers#master'
           TEST_COVERAGE: true
           ROS_DISTRO: humble
     env:
