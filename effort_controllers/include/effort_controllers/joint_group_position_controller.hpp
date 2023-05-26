@@ -15,6 +15,7 @@
 #ifndef EFFORT_CONTROLLERS__JOINT_GROUP_POSITION_CONTROLLER_HPP_
 #define EFFORT_CONTROLLERS__JOINT_GROUP_POSITION_CONTROLLER_HPP_
 
+#include <vector>
 #include <string>
 
 #include "control_toolbox/pid.hpp"
