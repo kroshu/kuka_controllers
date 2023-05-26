@@ -54,10 +54,7 @@ controller_interface::CallbackReturn
 ControlModeHandler::on_activate(const rclcpp_lifecycle::State &)
 {
   if (control_mode_ <= nanopb::kuka::motion::external::ExternalControlMode::kUnspecified) {
-    RCLCPP_WARN(
-      get_node()->get_logger(),
-      "Control mode unspecified, It is set to position control");
-    control_mode_ = nanopb::kuka::motion::external::ExternalControlMode::kPositionControl;
+    throw std::runtime_error("Control mode unspecified");
   }
 
   return controller_interface::CallbackReturn::SUCCESS;
