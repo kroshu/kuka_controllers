@@ -26,7 +26,7 @@
 #include "rclcpp/duration.hpp"
 #include "std_msgs/msg/u_int32.hpp"
 #include "pluginlib/class_list_macros.hpp"
-#include "nanopb/kuka/motion/external/external_control_mode.pb.hh"
+#include "kroshu_ros2_core/ControlMode.hpp"
 
 
 namespace kuka_controllers
@@ -55,8 +55,8 @@ public:
 
 private:
   rclcpp::Subscription<std_msgs::msg::UInt32>::SharedPtr control_mode_subscriber_;
-  nanopb::kuka::motion::external::ExternalControlMode control_mode_ =
-    nanopb::kuka::motion::external::ExternalControlMode::kUnspecified;
+  kroshu_ros2_core::ControlMode control_mode_ =
+    kroshu_ros2_core::ControlMode::UNSPECIFIED_CONTROL_MODE;
 
 };
 }  // namespace kuka_controllers
