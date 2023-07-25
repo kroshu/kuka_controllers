@@ -19,7 +19,8 @@ add_library(${PROJECT_NAME} SHARED
   src/timing_controller.cpp
   src/robot_state_broadcaster.cpp
   src/joint_impedance_controller.cpp
-  src/control_mode_handler.cpp)
+  src/control_mode_handler.cpp
+  src/twist_controller.cpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
   include
