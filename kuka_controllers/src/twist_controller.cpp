@@ -28,13 +28,12 @@ const
   controller_interface::InterfaceConfiguration config;
   config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
   // config.names.emplace_back("twist commands");
-  config.names.emplace_back("linear/x/velocity");
-  config.names.emplace_back("linear/y/velocity");
-  config.names.emplace_back("linear/z/velocity");
-  config.names.emplace_back("angular/x/velocity");
-  config.names.emplace_back("angular/y/velocity");
-  config.names.emplace_back("angular/z/velocity");
-
+  config.names.emplace_back("twist/linear/x");
+  config.names.emplace_back("twist/linear/y");
+  config.names.emplace_back("twist/linear/z");
+  config.names.emplace_back("twist/angular/x");
+  config.names.emplace_back("twist/angular/y");
+  config.names.emplace_back("twist/angular/z");
   return config;
 }
 
@@ -44,18 +43,20 @@ const
   controller_interface::InterfaceConfiguration config;
   config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
   // config.names.emplace_back("twist commands");
-  config.names.emplace_back("linear/x/velocity");
-  config.names.emplace_back("linear/y/velocity");
-  config.names.emplace_back("linear/z/velocity");
-  config.names.emplace_back("angular/x/velocity");
-  config.names.emplace_back("angular/y/velocity");
-  config.names.emplace_back("angular/z/velocity");
-  config.names.emplace_back("linear/x/position");
+  config.names.emplace_back("twist/linear/x");
+  config.names.emplace_back("twist/linear/y");
+  config.names.emplace_back("twist/linear/z");
+  config.names.emplace_back("twist/angular/x");
+  config.names.emplace_back("twist/angular/y");
+  config.names.emplace_back("twist/angular/z");
+  /*config.names.emplace_back("linear/x/position");
   config.names.emplace_back("linear/y/position");
   config.names.emplace_back("linear/z/position");
   config.names.emplace_back("angular/x/position");
   config.names.emplace_back("angular/y/position");
-  config.names.emplace_back("angular/z/position");
+  config.names.emplace_back("angular/z/position");*/
+
+  //config.names.emplace_back("twist");
 
   return config;
 }
