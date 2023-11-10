@@ -10,7 +10,7 @@ find_package(controller_interface REQUIRED)
 find_package(pluginlib REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_lifecycle REQUIRED)
-find_package(kroshu_ros2_core REQUIRED)
+find_package(kuka_drivers_core REQUIRED)
 
 include_directories(include)
 
@@ -21,7 +21,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
   include
 )
 
-ament_target_dependencies(${PROJECT_NAME} rclcpp controller_interface std_msgs kroshu_ros2_core
+ament_target_dependencies(${PROJECT_NAME} rclcpp controller_interface std_msgs kuka_drivers_core
 )
 
 pluginlib_export_plugin_description_file(controller_interface controller_plugins.xml)

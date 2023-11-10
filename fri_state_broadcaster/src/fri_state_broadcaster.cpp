@@ -16,22 +16,22 @@
 
 namespace kuka_controllers
 {
-controller_interface::CallbackReturn RobotStateBroadcaster::on_init()
+controller_interface::CallbackReturn FRIStateBroadcaster::on_init()
 {
-  robot_state_publisher_ = get_node()->create_publisher<kuka_driver_interfaces::msg::RobotState>(
+  robot_state_publisher_ = get_node()->create_publisher<kuka_driver_interfaces::msg::FRIState>(
     "robot_state", rclcpp::SystemDefaultsQoS());
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
 controller_interface::InterfaceConfiguration
-RobotStateBroadcaster::command_interface_configuration()
+FRIStateBroadcaster::command_interface_configuration()
 const
 {
   return controller_interface::InterfaceConfiguration{controller_interface::
     interface_configuration_type::NONE};
 }
 
-controller_interface::InterfaceConfiguration RobotStateBroadcaster::state_interface_configuration()
+controller_interface::InterfaceConfiguration FRIStateBroadcaster::state_interface_configuration()
 const
 {
   controller_interface::InterfaceConfiguration config;
@@ -49,24 +49,24 @@ const
 }
 
 controller_interface::CallbackReturn
-RobotStateBroadcaster::on_configure(const rclcpp_lifecycle::State &)
+FRIStateBroadcaster::on_configure(const rclcpp_lifecycle::State &)
 {
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
 controller_interface::CallbackReturn
-RobotStateBroadcaster::on_activate(const rclcpp_lifecycle::State &)
+FRIStateBroadcaster::on_activate(const rclcpp_lifecycle::State &)
 {
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
 controller_interface::CallbackReturn
-RobotStateBroadcaster::on_deactivate(const rclcpp_lifecycle::State &)
+FRIStateBroadcaster::on_deactivate(const rclcpp_lifecycle::State &)
 {
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
-controller_interface::return_type RobotStateBroadcaster::update(
+controller_interface::return_type FRIStateBroadcaster::update(
   const rclcpp::Time &,
   const rclcpp::Duration &)
 {
@@ -92,5 +92,5 @@ controller_interface::return_type RobotStateBroadcaster::update(
 }  // namespace kuka_controllers
 
 PLUGINLIB_EXPORT_CLASS(
-  kuka_controllers::RobotStateBroadcaster,
+  kuka_controllers::FRIStateBroadcaster,
   controller_interface::ControllerInterface)
