@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef KUKA_CONTROLLERS__ROBOT_STATE_BROADCASTER_HPP_
-#define KUKA_CONTROLLERS__ROBOT_STATE_BROADCASTER_HPP_
+#ifndef FRI_STATE_BROADCASTER__FRI_STATE_BROADCASTER_HPP_
+#define FRI_STATE_BROADCASTER__FRI_STATE_BROADCASTER_HPP_
 
 #include <memory>
 #include <string>
@@ -59,4 +59,4 @@ private:
   kuka_driver_interfaces::msg::RobotState state_msg_;
 };
 }  // namespace kuka_controllers
-#endif  // KUKA_CONTROLLERS__ROBOT_STATE_BROADCASTER_HPP_
+#endif  // FRI_STATE_BROADCASTER__FRI_STATE_BROADCASTER_HPP_

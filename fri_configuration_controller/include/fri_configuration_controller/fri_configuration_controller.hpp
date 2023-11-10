@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef KUKA_CONTROLLERS__TIMING_CONTROLLER_HPP_
-#define KUKA_CONTROLLERS__TIMING_CONTROLLER_HPP_
+#ifndef FRI_CONFIGURATION_CONTROLLER__FRI_CONFIGURATION_CONTROLLER_HPP_
+#define FRI_CONFIGURATION_CONTROLLER__FRI_CONFIGURATION_CONTROLLER_HPP_
 
 #include <memory>
 #include <string>
@@ -58,4 +58,4 @@ private:
   bool resend_multiplier_ = false;
 };
 }  // namespace kuka_controllers
-#endif  // KUKA_CONTROLLERS__TIMING_CONTROLLER_HPP_
+#endif  // FRI_CONFIGURATION_CONTROLLER__FRI_CONFIGURATION_CONTROLLER_HPP_

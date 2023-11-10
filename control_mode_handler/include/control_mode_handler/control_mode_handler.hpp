@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef KUKA_CONTROLLERS__CONTROL_MODE_HANDLER_HPP_
-#define KUKA_CONTROLLERS__CONTROL_MODE_HANDLER_HPP_
+#ifndef CONTROL_MODE_HANDLER__CONTROL_MODE_HANDLER_HPP_
+#define CONTROL_MODE_HANDLER__CONTROL_MODE_HANDLER_HPP_
 
 #include <memory>
 #include <string>
@@ -27,7 +27,6 @@
 #include "std_msgs/msg/u_int32.hpp"
 #include "pluginlib/class_list_macros.hpp"
 #include "kroshu_ros2_core/ControlMode.hpp"
-
 
 namespace kuka_controllers
 {
@@ -57,7 +56,6 @@ private:
   rclcpp::Subscription<std_msgs::msg::UInt32>::SharedPtr control_mode_subscriber_;
   kroshu_ros2_core::ControlMode control_mode_ =
     kroshu_ros2_core::ControlMode::UNSPECIFIED_CONTROL_MODE;
-
 };
 }  // namespace kuka_controllers
-#endif  // KUKA_CONTROLLERS__CONTROL_MODE_HANDLER_HPP_
+#endif  // CONTROL_MODE_HANDLER__CONTROL_MODE_HANDLER_HPP_

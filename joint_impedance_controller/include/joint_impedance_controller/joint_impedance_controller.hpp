@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef KUKA_CONTROLLERS__JOINT_IMPEDANCE_CONTROLLER_HPP_
-#define KUKA_CONTROLLERS__JOINT_IMPEDANCE_CONTROLLER_HPP_
+#ifndef JOINT_IMPEDANCE_CONTROLLER__JOINT_IMPEDANCE_CONTROLLER_HPP_
+#define JOINT_IMPEDANCE_CONTROLLER__JOINT_IMPEDANCE_CONTROLLER_HPP_
 
 #include <memory>
 #include <string>
@@ -58,4 +58,4 @@ private:
   std::vector<double> damping_;
 };
 }  // namespace kuka_controllers
-#endif  // KUKA_CONTROLLERS__JOINT_IMPEDANCE_CONTROLLER_HPP_
+#endif  // JOINT_IMPEDANCE_CONTROLLER__JOINT_IMPEDANCE_CONTROLLER_HPP_

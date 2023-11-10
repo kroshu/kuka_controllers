@@ -45,7 +45,8 @@ const
   return config;
 }
 
-controller_interface::InterfaceConfiguration JointImpedanceController::state_interface_configuration()
+controller_interface::InterfaceConfiguration
+JointImpedanceController::state_interface_configuration()
 const
 {
   return controller_interface::InterfaceConfiguration{controller_interface::
@@ -82,7 +83,6 @@ controller_interface::return_type JointImpedanceController::update(
   const rclcpp::Time &,
   const rclcpp::Duration &)
 {
-
   for (auto index = 0; index < 6; ++index) {
     command_interfaces_[index].set_value(stiffness_[index]);
   }
@@ -91,7 +91,6 @@ controller_interface::return_type JointImpedanceController::update(
   }
   return controller_interface::return_type::OK;
 }
-
 }  // namespace kuka_controllers
 
 PLUGINLIB_EXPORT_CLASS(
