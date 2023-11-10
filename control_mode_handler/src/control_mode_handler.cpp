@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "kuka_controllers/control_mode_handler.hpp"
+#include "control_mode_handler/control_mode_handler.hpp"
 
 namespace kuka_controllers
 {

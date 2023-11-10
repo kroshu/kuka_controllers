@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "kuka_controllers/robot_state_broadcaster.hpp"
+#include "fri_state_broadcaster/fri_state_broadcaster.hpp"
 
 namespace kuka_controllers
 {
