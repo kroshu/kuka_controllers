@@ -31,7 +31,8 @@ controller_interface::CallbackReturn FRIConfigurationController::on_init()
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
-controller_interface::InterfaceConfiguration FRIConfigurationController::command_interface_configuration()
+controller_interface::InterfaceConfiguration FRIConfigurationController::
+command_interface_configuration()
 const
 {
   controller_interface::InterfaceConfiguration config;
@@ -40,7 +41,8 @@ const
   return config;
 }
 
-controller_interface::InterfaceConfiguration FRIConfigurationController::state_interface_configuration() const
+controller_interface::InterfaceConfiguration FRIConfigurationController::
+state_interface_configuration() const
 {
   return controller_interface::InterfaceConfiguration{controller_interface::
     interface_configuration_type::NONE};
