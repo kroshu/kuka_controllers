@@ -35,7 +35,7 @@ jobs:
           BUILDER: colcon
           ANALYZER: sonarqube
           # TODO: only the kuka_driver interfaces package is needed from upstream WS
-          UPSTREAM_WORKSPACE: 'github:kroshu/ros2_kuka_drivers#master github:kroshu/kroshu_ros2_core#master github:kroshu/kuka_simulators#main'
+          UPSTREAM_WORKSPACE: 'github:kroshu/ros2_kuka_drivers#master github:kroshu/kroshu_ros2_core#master'
           TEST_COVERAGE: true
           ROS_DISTRO: humble
     env:
