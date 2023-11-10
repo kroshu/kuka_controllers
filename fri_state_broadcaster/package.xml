@@ -16,7 +16,6 @@
   <depend>rclcpp_lifecycle</depend>
   <depend>std_msgs</depend>
   <depend>kuka_driver_interfaces</depend>
-  <depend>kroshu_ros2_core</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

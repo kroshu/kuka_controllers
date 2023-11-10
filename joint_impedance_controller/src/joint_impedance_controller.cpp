@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "kuka_controllers/joint_impedance_controller.hpp"
+#include "joint_impedance_controller/joint_impedance_controller.hpp"
 
 namespace kuka_controllers
 {
