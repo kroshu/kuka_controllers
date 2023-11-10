@@ -43,7 +43,7 @@ ControlModeHandler::on_configure(const rclcpp_lifecycle::State &)
   control_mode_subscriber_ = get_node()->create_subscription<std_msgs::msg::UInt32>(
     "control_mode", rclcpp::SystemDefaultsQoS(),
     [this](const std_msgs::msg::UInt32::SharedPtr msg) {
-      control_mode_ = kroshu_ros2_core::ControlMode(msg->data);
+      control_mode_ = kuka_drivers_core::ControlMode(msg->data);
       RCLCPP_INFO(get_node()->get_logger(), "Control mode changed to %u", msg->data);
     });
   RCLCPP_INFO(get_node()->get_logger(), "Control mode handler configured");
@@ -53,7 +53,7 @@ ControlModeHandler::on_configure(const rclcpp_lifecycle::State &)
 controller_interface::CallbackReturn
 ControlModeHandler::on_activate(const rclcpp_lifecycle::State &)
 {
-  if (control_mode_ <= kroshu_ros2_core::ControlMode::UNSPECIFIED_CONTROL_MODE) {
+  if (control_mode_ <= kuka_drivers_core::ControlMode::UNSPECIFIED_CONTROL_MODE) {
     throw std::runtime_error("Control mode unspecified");
   }
 

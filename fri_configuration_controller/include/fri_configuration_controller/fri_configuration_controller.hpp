@@ -30,7 +30,7 @@
 
 namespace kuka_controllers
 {
-class TimingController : public controller_interface::ControllerInterface
+class FRIConfigurationController : public controller_interface::ControllerInterface
 {
 public:
   controller_interface::InterfaceConfiguration command_interface_configuration() const override;

@@ -16,7 +16,7 @@
 
 namespace kuka_controllers
 {
-controller_interface::CallbackReturn TimingController::on_init()
+controller_interface::CallbackReturn FRIConfigurationController::on_init()
 {
   auto callback = [this](kuka_driver_interfaces::srv::SetInt::Request::SharedPtr request,
       kuka_driver_interfaces::srv::SetInt::Response::SharedPtr response) {
@@ -31,7 +31,7 @@ controller_interface::CallbackReturn TimingController::on_init()
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
-controller_interface::InterfaceConfiguration TimingController::command_interface_configuration()
+controller_interface::InterfaceConfiguration FRIConfigurationController::command_interface_configuration()
 const
 {
   controller_interface::InterfaceConfiguration config;
@@ -40,31 +40,31 @@ const
   return config;
 }
 
-controller_interface::InterfaceConfiguration TimingController::state_interface_configuration() const
+controller_interface::InterfaceConfiguration FRIConfigurationController::state_interface_configuration() const
 {
   return controller_interface::InterfaceConfiguration{controller_interface::
     interface_configuration_type::NONE};
 }
 
 controller_interface::CallbackReturn
-TimingController::on_configure(const rclcpp_lifecycle::State &)
+FRIConfigurationController::on_configure(const rclcpp_lifecycle::State &)
 {
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
 controller_interface::CallbackReturn
-TimingController::on_activate(const rclcpp_lifecycle::State &)
+FRIConfigurationController::on_activate(const rclcpp_lifecycle::State &)
 {
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
 controller_interface::CallbackReturn
-TimingController::on_deactivate(const rclcpp_lifecycle::State &)
+FRIConfigurationController::on_deactivate(const rclcpp_lifecycle::State &)
 {
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
-controller_interface::return_type TimingController::update(
+controller_interface::return_type FRIConfigurationController::update(
   const rclcpp::Time &,
   const rclcpp::Duration &)
 {
@@ -82,5 +82,5 @@ controller_interface::return_type TimingController::update(
 }  // namespace kuka_controllers
 
 PLUGINLIB_EXPORT_CLASS(
-  kuka_controllers::TimingController,
+  kuka_controllers::FRIConfigurationController,
   controller_interface::ControllerInterface)

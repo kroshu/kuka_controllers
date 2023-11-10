@@ -26,7 +26,7 @@
 #include "rclcpp/duration.hpp"
 #include "std_msgs/msg/u_int32.hpp"
 #include "pluginlib/class_list_macros.hpp"
-#include "kroshu_ros2_core/ControlMode.hpp"
+#include "kuka_drivers_core/ControlMode.hpp"
 
 namespace kuka_controllers
 {
@@ -54,8 +54,8 @@ public:
 
 private:
   rclcpp::Subscription<std_msgs::msg::UInt32>::SharedPtr control_mode_subscriber_;
-  kroshu_ros2_core::ControlMode control_mode_ =
-    kroshu_ros2_core::ControlMode::UNSPECIFIED_CONTROL_MODE;
+  kuka_drivers_core::ControlMode control_mode_ =
+    kuka_drivers_core::ControlMode::UNSPECIFIED_CONTROL_MODE;
 };
 }  // namespace kuka_controllers
 #endif  // CONTROL_MODE_HANDLER__CONTROL_MODE_HANDLER_HPP_
