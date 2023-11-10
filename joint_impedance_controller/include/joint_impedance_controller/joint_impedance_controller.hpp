@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef KUKA_CONTROLLERS__ROBOT_STATE_BROADCASTER_HPP_
-#define KUKA_CONTROLLERS__ROBOT_STATE_BROADCASTER_HPP_
+#ifndef JOINT_IMPEDANCE_CONTROLLER__JOINT_IMPEDANCE_CONTROLLER_HPP_
+#define JOINT_IMPEDANCE_CONTROLLER__JOINT_IMPEDANCE_CONTROLLER_HPP_
 
 #include <memory>
 #include <string>
@@ -22,16 +22,15 @@
 
 #include "controller_interface/controller_interface.hpp"
 #include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
-#include "kuka_driver_interfaces/msg/robot_state.hpp"
 #include "rclcpp/time.hpp"
 #include "rclcpp/duration.hpp"
+#include "std_msgs/msg/float64_multi_array.hpp"
 
 #include "pluginlib/class_list_macros.hpp"
 
-
 namespace kuka_controllers
 {
-class RobotStateBroadcaster : public controller_interface::ControllerInterface
+class JointImpedanceController : public controller_interface::ControllerInterface
 {
 public:
   controller_interface::InterfaceConfiguration command_interface_configuration() const override;
@@ -54,9 +53,9 @@ public:
   controller_interface::CallbackReturn on_init() override;
 
 private:
-  int counter_ = 0;
-  rclcpp::Publisher<kuka_driver_interfaces::msg::RobotState>::SharedPtr robot_state_publisher_;
-  kuka_driver_interfaces::msg::RobotState state_msg_;
+  rclcpp::Subscription<std_msgs::msg::Float64MultiArray>::SharedPtr joint_impedance_subscriber_;
+  std::vector<double> stiffness_;
+  std::vector<double> damping_;
 };
 }  // namespace kuka_controllers
-#endif  // KUKA_CONTROLLERS__ROBOT_STATE_BROADCASTER_HPP_
+#endif  // JOINT_IMPEDANCE_CONTROLLER__JOINT_IMPEDANCE_CONTROLLER_HPP_

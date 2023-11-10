@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef KUKA_CONTROLLERS__JOINT_IMPEDANCE_CONTROLLER_HPP_
-#define KUKA_CONTROLLERS__JOINT_IMPEDANCE_CONTROLLER_HPP_
+#ifndef FRI_CONFIGURATION_CONTROLLER__FRI_CONFIGURATION_CONTROLLER_HPP_
+#define FRI_CONFIGURATION_CONTROLLER__FRI_CONFIGURATION_CONTROLLER_HPP_
 
 #include <memory>
 #include <string>
@@ -24,13 +24,13 @@
 #include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 #include "rclcpp/time.hpp"
 #include "rclcpp/duration.hpp"
-#include "std_msgs/msg/float64_multi_array.hpp"
+#include "kuka_driver_interfaces/srv/set_int.hpp"
 
 #include "pluginlib/class_list_macros.hpp"
 
 namespace kuka_controllers
 {
-class JointImpedanceController : public controller_interface::ControllerInterface
+class TimingController : public controller_interface::ControllerInterface
 {
 public:
   controller_interface::InterfaceConfiguration command_interface_configuration() const override;
@@ -53,9 +53,9 @@ public:
   controller_interface::CallbackReturn on_init() override;
 
 private:
-  rclcpp::Subscription<std_msgs::msg::Float64MultiArray>::SharedPtr joint_impedance_subscriber_;
-  std::vector<double> stiffness_;
-  std::vector<double> damping_;
+  rclcpp::Service<kuka_driver_interfaces::srv::SetInt>::SharedPtr receive_multiplier_service_;
+  int receive_multiplier_ = 1;
+  bool resend_multiplier_ = false;
 };
 }  // namespace kuka_controllers
-#endif  // KUKA_CONTROLLERS__JOINT_IMPEDANCE_CONTROLLER_HPP_
+#endif  // FRI_CONFIGURATION_CONTROLLER__FRI_CONFIGURATION_CONTROLLER_HPP_

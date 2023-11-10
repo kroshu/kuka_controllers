@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef KUKA_CONTROLLERS__TIMING_CONTROLLER_HPP_
-#define KUKA_CONTROLLERS__TIMING_CONTROLLER_HPP_
+#ifndef CONTROL_MODE_HANDLER__CONTROL_MODE_HANDLER_HPP_
+#define CONTROL_MODE_HANDLER__CONTROL_MODE_HANDLER_HPP_
 
 #include <memory>
 #include <string>
@@ -24,13 +24,13 @@
 #include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 #include "rclcpp/time.hpp"
 #include "rclcpp/duration.hpp"
-#include "kuka_driver_interfaces/srv/set_int.hpp"
-
+#include "std_msgs/msg/u_int32.hpp"
 #include "pluginlib/class_list_macros.hpp"
+#include "kroshu_ros2_core/ControlMode.hpp"
 
 namespace kuka_controllers
 {
-class TimingController : public controller_interface::ControllerInterface
+class ControlModeHandler : public controller_interface::ControllerInterface
 {
 public:
   controller_interface::InterfaceConfiguration command_interface_configuration() const override;
@@ -53,9 +53,9 @@ public:
   controller_interface::CallbackReturn on_init() override;
 
 private:
-  rclcpp::Service<kuka_driver_interfaces::srv::SetInt>::SharedPtr receive_multiplier_service_;
-  int receive_multiplier_ = 1;
-  bool resend_multiplier_ = false;
+  rclcpp::Subscription<std_msgs::msg::UInt32>::SharedPtr control_mode_subscriber_;
+  kroshu_ros2_core::ControlMode control_mode_ =
+    kroshu_ros2_core::ControlMode::UNSPECIFIED_CONTROL_MODE;
 };
 }  // namespace kuka_controllers
-#endif  // KUKA_CONTROLLERS__TIMING_CONTROLLER_HPP_
+#endif  // CONTROL_MODE_HANDLER__CONTROL_MODE_HANDLER_HPP_

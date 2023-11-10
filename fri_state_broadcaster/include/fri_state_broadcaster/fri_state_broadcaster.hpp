@@ -13,8 +13,8 @@
 // limitations under the License.
 
 
-#ifndef KUKA_CONTROLLERS__CONTROL_MODE_HANDLER_HPP_
-#define KUKA_CONTROLLERS__CONTROL_MODE_HANDLER_HPP_
+#ifndef FRI_STATE_BROADCASTER__FRI_STATE_BROADCASTER_HPP_
+#define FRI_STATE_BROADCASTER__FRI_STATE_BROADCASTER_HPP_
 
 #include <memory>
 #include <string>
@@ -22,16 +22,16 @@
 
 #include "controller_interface/controller_interface.hpp"
 #include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
+#include "kuka_driver_interfaces/msg/robot_state.hpp"
 #include "rclcpp/time.hpp"
 #include "rclcpp/duration.hpp"
-#include "std_msgs/msg/u_int32.hpp"
+
 #include "pluginlib/class_list_macros.hpp"
-#include "kroshu_ros2_core/ControlMode.hpp"
 
 
 namespace kuka_controllers
 {
-class ControlModeHandler : public controller_interface::ControllerInterface
+class RobotStateBroadcaster : public controller_interface::ControllerInterface
 {
 public:
   controller_interface::InterfaceConfiguration command_interface_configuration() const override;
@@ -54,10 +54,9 @@ public:
   controller_interface::CallbackReturn on_init() override;
 
 private:
-  rclcpp::Subscription<std_msgs::msg::UInt32>::SharedPtr control_mode_subscriber_;
-  kroshu_ros2_core::ControlMode control_mode_ =
-    kroshu_ros2_core::ControlMode::UNSPECIFIED_CONTROL_MODE;
-
+  int counter_ = 0;
+  rclcpp::Publisher<kuka_driver_interfaces::msg::RobotState>::SharedPtr robot_state_publisher_;
+  kuka_driver_interfaces::msg::RobotState state_msg_;
 };
 }  // namespace kuka_controllers
-#endif  // KUKA_CONTROLLERS__CONTROL_MODE_HANDLER_HPP_
+#endif  // FRI_STATE_BROADCASTER__FRI_STATE_BROADCASTER_HPP_

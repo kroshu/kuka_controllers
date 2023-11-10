@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "kuka_controllers/joint_impedance_controller.hpp"
+#include "joint_impedance_controller/joint_impedance_controller.hpp"
 
 namespace kuka_controllers
 {
@@ -45,7 +45,8 @@ const
   return config;
 }
 
-controller_interface::InterfaceConfiguration JointImpedanceController::state_interface_configuration()
+controller_interface::InterfaceConfiguration
+JointImpedanceController::state_interface_configuration()
 const
 {
   return controller_interface::InterfaceConfiguration{controller_interface::
@@ -82,7 +83,6 @@ controller_interface::return_type JointImpedanceController::update(
   const rclcpp::Time &,
   const rclcpp::Duration &)
 {
-
   for (auto index = 0; index < 6; ++index) {
     command_interfaces_[index].set_value(stiffness_[index]);
   }
@@ -91,7 +91,6 @@ controller_interface::return_type JointImpedanceController::update(
   }
   return controller_interface::return_type::OK;
 }
-
 }  // namespace kuka_controllers
 
 PLUGINLIB_EXPORT_CLASS(
