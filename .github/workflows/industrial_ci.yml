@@ -36,7 +36,7 @@ jobs:
           ANALYZER: sonarqube
           # TODO: only the kuka_driver interfaces package is needed from upstream WS
           # kuka_robot_descriptions is nedded as upstream for drivers...
-          UPSTREAM_WORKSPACE: 'github:kroshu/kuka_robot_descriptions#master -kuka_lbr_iisy_support'
+          UPSTREAM_WORKSPACE: 'github:kroshu/kuka_robot_descriptions#master -kuka_robot_descriptions/kuka_lbr_iisy_support'
           TEST_COVERAGE: true
           ROS_DISTRO: humble
     env:
