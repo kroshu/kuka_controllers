@@ -30,18 +30,18 @@ const
   controller_interface::InterfaceConfiguration config;
   config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
   // config.names.emplace_back("joint_impedance");
-  config.names.emplace_back("joint_a1/stiffness");
-  config.names.emplace_back("joint_a2/stiffness");
-  config.names.emplace_back("joint_a3/stiffness");
-  config.names.emplace_back("joint_a4/stiffness");
-  config.names.emplace_back("joint_a5/stiffness");
-  config.names.emplace_back("joint_a6/stiffness");
-  config.names.emplace_back("joint_a1/damping");
-  config.names.emplace_back("joint_a2/damping");
-  config.names.emplace_back("joint_a3/damping");
-  config.names.emplace_back("joint_a4/damping");
-  config.names.emplace_back("joint_a5/damping");
-  config.names.emplace_back("joint_a6/damping");
+  config.names.emplace_back("joint_1/stiffness");
+  config.names.emplace_back("joint_2/stiffness");
+  config.names.emplace_back("joint_3/stiffness");
+  config.names.emplace_back("joint_4/stiffness");
+  config.names.emplace_back("joint_5/stiffness");
+  config.names.emplace_back("joint_6/stiffness");
+  config.names.emplace_back("joint_1/damping");
+  config.names.emplace_back("joint_2/damping");
+  config.names.emplace_back("joint_3/damping");
+  config.names.emplace_back("joint_4/damping");
+  config.names.emplace_back("joint_5/damping");
+  config.names.emplace_back("joint_6/damping");
   return config;
 }
 
