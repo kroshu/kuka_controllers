@@ -29,7 +29,6 @@ const
 {
   controller_interface::InterfaceConfiguration config;
   config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
-  // config.names.emplace_back("joint_impedance");
   config.names.emplace_back("joint_1/stiffness");
   config.names.emplace_back("joint_2/stiffness");
   config.names.emplace_back("joint_3/stiffness");
