@@ -26,7 +26,7 @@
 #include "rclcpp/duration.hpp"
 #include "std_msgs/msg/u_int32.hpp"
 #include "pluginlib/class_list_macros.hpp"
-#include "kuka_drivers_core/ControlMode.hpp"
+#include "kuka_drivers_core/control_mode.hpp"
 
 namespace kuka_controllers
 {
