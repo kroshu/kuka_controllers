@@ -1,26 +1,26 @@
 cmake_minimum_required(VERSION 3.5)
-project(joint_impedance_controller)
+project(joint_group_impedance_controller)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra)
 endif()
 
 find_package(ament_cmake REQUIRED)
-find_package(controller_interface REQUIRED)
 find_package(pluginlib REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_lifecycle REQUIRED)
+find_package(forward_command_controller)
 
 include_directories(include)
 
 add_library(${PROJECT_NAME} SHARED
-  src/joint_impedance_controller.cpp)
+  src/joint_group_impedance_controller.cpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
   include
 )
 
-ament_target_dependencies(${PROJECT_NAME} rclcpp controller_interface std_msgs
+ament_target_dependencies(${PROJECT_NAME} rclcpp forward_command_controller
 )
 
 pluginlib_export_plugin_description_file(controller_interface controller_plugins.xml)

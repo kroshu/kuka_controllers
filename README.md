@@ -11,7 +11,7 @@ The controllers in this repository can be divided into three categories.
 
 These controllers update the command interfaces of a hardware cyclically.
 
-#### `joint_impedance_controller`
+#### `joint_group_impedance_controller`
 The joint impedance controller listens on the `~/joint_impedance` topic and updates the `stiffness` and `damping` interfaces of the hardware accordingly.
 
 __Required parameters__:

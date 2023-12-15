@@ -70,7 +70,6 @@ controller_interface::return_type FRIStateBroadcaster::update(
   const rclcpp::Time &,
   const rclcpp::Duration &)
 {
-  // TODO(Svastits): measure additional system overload, limit rate?
   state_msg_.session_state = static_cast<int>(state_interfaces_[0].get_value());
   state_msg_.connection_quality = static_cast<int>(state_interfaces_[1].get_value());
   state_msg_.safety_state = static_cast<int>(state_interfaces_[2].get_value());
