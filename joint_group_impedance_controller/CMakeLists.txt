@@ -55,7 +55,7 @@ if(BUILD_TESTING)
   ament_cpplint()
   ament_lint_cmake()
   ament_uncrustify(--language=C++)
-  ament_xmllint(--exclude ros_rsi.rsi.xml)
+  ament_xmllint()
 endif()
 
 ament_export_include_directories(include)

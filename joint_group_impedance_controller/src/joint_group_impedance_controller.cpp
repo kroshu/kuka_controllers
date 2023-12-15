@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include "pluginlib/class_list_macros.hpp"
+
 #include "controller_interface/controller_interface.hpp"
 
 #include "joint_group_impedance_controller/joint_group_impedance_controller.hpp"
