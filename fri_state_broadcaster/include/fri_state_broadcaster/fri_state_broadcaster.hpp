@@ -27,7 +27,7 @@
 #include "rclcpp/duration.hpp"
 #include "pluginlib/class_list_macros.hpp"
 
-#include "fri_state_broadcaster/visibility_control.hpp"
+#include "fri_state_broadcaster/visibility_control.h"
 
 
 namespace kuka_controllers
