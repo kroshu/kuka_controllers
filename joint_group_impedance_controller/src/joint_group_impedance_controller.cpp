@@ -21,9 +21,48 @@
 
 namespace kuka_controllers
 {
+
+JointGroupImpedanceController::JointGroupImpedanceController()
+: ForwardControllersBase()
+{
+}
+
+void JointGroupImpedanceController::declare_parameters()
+{
+  param_listener_ = std::make_shared<ParamListener>(get_node());
+}
+
+controller_interface::CallbackReturn JointGroupImpedanceController::read_parameters()
+{
+  if (!param_listener_) {
+    RCLCPP_ERROR(get_node()->get_logger(), "Error encountered during init");
+    return controller_interface::CallbackReturn::ERROR;
+  }
+  params_ = param_listener_->get_params();
+
+  if (params_.joints.empty()) {
+    RCLCPP_ERROR(get_node()->get_logger(), "'joints' parameter is empty");
+    return controller_interface::CallbackReturn::ERROR;
+  }
+
+  if (params_.interface_names.empty()) {
+    RCLCPP_ERROR(get_node()->get_logger(), "'interfaces' parameter is empty");
+    return controller_interface::CallbackReturn::ERROR;
+  }
+
+  for (const auto & joint : params_.joints) {
+    for (const auto & interface : params_.interface_names) {
+      command_interface_types_.push_back(joint + "/" + interface);
+    }
+  }
+
+  return controller_interface::CallbackReturn::SUCCESS;
+}
+
+
 controller_interface::CallbackReturn JointGroupImpedanceController::on_init()
 {
-  auto ret = MultiInterfaceForwardCommandController::on_init();
+  auto ret = ForwardControllersBase::on_init();
   if (ret != CallbackReturn::SUCCESS) {
     return ret;
   }

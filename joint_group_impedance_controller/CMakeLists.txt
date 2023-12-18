@@ -11,8 +11,14 @@ find_package(rclcpp REQUIRED)
 find_package(rclcpp_lifecycle REQUIRED)
 find_package(forward_command_controller)
 find_package(kuka_drivers_core)
+find_package(generate_parameter_library)
 
 include_directories(include)
+
+generate_parameter_library(
+  joint_group_impedance_controller_parameters
+  src/joint_group_impedance_controller_parameters.yaml
+)
 
 add_library(${PROJECT_NAME} SHARED
   src/joint_group_impedance_controller.cpp)
@@ -23,6 +29,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 ament_target_dependencies(${PROJECT_NAME} rclcpp forward_command_controller kuka_drivers_core
 )
+target_link_libraries(${PROJECT_NAME} joint_group_impedance_controller_parameters)
 
 pluginlib_export_plugin_description_file(controller_interface controller_plugins.xml)
 
