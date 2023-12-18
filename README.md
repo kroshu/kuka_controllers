@@ -12,7 +12,14 @@ The controllers in this repository can be divided into three categories.
 These controllers update the command interfaces of a hardware cyclically.
 
 #### `joint_group_impedance_controller`
-The joint impedance controller listens on the `~/joint_impedance` topic and updates the `stiffness` and `damping` interfaces of the hardware accordingly.
+The joint impedance controller listens on the `~/command` topic and updates the `stiffness` and `damping` interfaces of the hardware accordingly.
+The command must be of `std_msgs::Float64MultiArray` type and must contain the values for all configured joints. The order of the values should match the `stifness_1, damping_1, stiffness_2, ...` pattern.
+
+Example cli command to set damping to 0.7 and stiffness to 100 for all joints of a 6 DOF robot:
+
+```
+ros2 topic pub /joint_group_impedance_controller/commands std_msgs/msg/Float64MultiArray "{data: [100, 0.7 ,100 ,0.7, 100, 0.7, 100, 0.7, 100, 0.7, 100, 0.7]}" --once
+```
 
 __Required parameters__:
 - `joints` [string_array]: Names of joints used by the controller

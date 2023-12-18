@@ -15,7 +15,7 @@
 #include "pluginlib/class_list_macros.hpp"
 
 #include "controller_interface/controller_interface.hpp"
-#include "kuka_drivers_core/hardware_interface_types.h"
+#include "kuka_drivers_core/hardware_interface_types.hpp"
 
 #include "joint_group_impedance_controller/joint_group_impedance_controller.hpp"
 
