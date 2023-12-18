@@ -27,7 +27,7 @@ controller_interface::CallbackReturn FRIConfigurationController::on_init()
       response->success = true;
     };
   receive_multiplier_service_ = get_node()->create_service<kuka_driver_interfaces::srv::SetInt>(
-    "set_receive_multiplier", callback);
+    "~/set_receive_multiplier", callback);
   // TODO(Svastits): create service to get multiplier changes (or perpaps parameter??)
   //   and set resend_multiplier_ to true in the callback
   return controller_interface::CallbackReturn::SUCCESS;

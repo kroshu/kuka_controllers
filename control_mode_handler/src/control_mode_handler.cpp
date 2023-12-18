@@ -44,7 +44,7 @@ controller_interface::CallbackReturn
 ControlModeHandler::on_configure(const rclcpp_lifecycle::State &)
 {
   control_mode_subscriber_ = get_node()->create_subscription<std_msgs::msg::UInt32>(
-    "control_mode", rclcpp::SystemDefaultsQoS(),
+    "~/control_mode", rclcpp::SystemDefaultsQoS(),
     [this](const std_msgs::msg::UInt32::SharedPtr msg) {
       control_mode_ = kuka_drivers_core::ControlMode(msg->data);
       RCLCPP_INFO(get_node()->get_logger(), "Control mode changed to %u", msg->data);
