@@ -25,8 +25,9 @@
 #include "kuka_driver_interfaces/msg/fri_state.hpp"
 #include "rclcpp/time.hpp"
 #include "rclcpp/duration.hpp"
-
 #include "pluginlib/class_list_macros.hpp"
+
+#include "fri_state_broadcaster/visibility_control.h"
 
 
 namespace kuka_controllers
@@ -34,24 +35,26 @@ namespace kuka_controllers
 class FRIStateBroadcaster : public controller_interface::ControllerInterface
 {
 public:
-  controller_interface::InterfaceConfiguration command_interface_configuration() const override;
+  FRI_STATE_BROADCASTER_PUBLIC controller_interface::InterfaceConfiguration
+  command_interface_configuration() const override;
 
-  controller_interface::InterfaceConfiguration state_interface_configuration() const override;
+  FRI_STATE_BROADCASTER_PUBLIC controller_interface::InterfaceConfiguration
+  state_interface_configuration() const override;
 
-  controller_interface::return_type update(
+  FRI_STATE_BROADCASTER_PUBLIC controller_interface::return_type update(
     const rclcpp::Time & time,
     const rclcpp::Duration & period) override;
 
-  controller_interface::CallbackReturn on_configure(const rclcpp_lifecycle::State & previous_state)
-  override;
+  FRI_STATE_BROADCASTER_PUBLIC controller_interface::CallbackReturn on_configure(
+    const rclcpp_lifecycle::State & previous_state) override;
 
-  controller_interface::CallbackReturn on_activate(const rclcpp_lifecycle::State & previous_state)
-  override;
+  FRI_STATE_BROADCASTER_PUBLIC controller_interface::CallbackReturn on_activate(
+    const rclcpp_lifecycle::State & previous_state) override;
 
-  controller_interface::CallbackReturn on_deactivate(const rclcpp_lifecycle::State & previous_state)
-  override;
+  FRI_STATE_BROADCASTER_PUBLIC controller_interface::CallbackReturn on_deactivate(
+    const rclcpp_lifecycle::State & previous_state) override;
 
-  controller_interface::CallbackReturn on_init() override;
+  FRI_STATE_BROADCASTER_PUBLIC controller_interface::CallbackReturn on_init() override;
 
 private:
   int counter_ = 0;

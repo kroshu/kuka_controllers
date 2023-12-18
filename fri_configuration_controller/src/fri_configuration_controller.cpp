@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include "kuka_drivers_core/hardware_interface_types.hpp"
+
 #include "fri_configuration_controller/fri_configuration_controller.hpp"
 
 namespace kuka_controllers
@@ -25,7 +27,7 @@ controller_interface::CallbackReturn FRIConfigurationController::on_init()
       response->success = true;
     };
   receive_multiplier_service_ = get_node()->create_service<kuka_driver_interfaces::srv::SetInt>(
-    "set_receive_multiplier", callback);
+    "~/set_receive_multiplier", callback);
   // TODO(Svastits): create service to get multiplier changes (or perpaps parameter??)
   //   and set resend_multiplier_ to true in the callback
   return controller_interface::CallbackReturn::SUCCESS;
@@ -37,7 +39,8 @@ const
 {
   controller_interface::InterfaceConfiguration config;
   config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
-  config.names.emplace_back("timing/receive_multiplier");
+  config.names.emplace_back(
+    std::string(hardware_interface::CONFIG_PREFIX) + "/" + hardware_interface::RECEIVE_MULTIPLIER);
   return config;
 }
 

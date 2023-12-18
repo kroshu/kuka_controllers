@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include "kuka_drivers_core/hardware_interface_types.hpp"
+
 #include "control_mode_handler/control_mode_handler.hpp"
 
 namespace kuka_controllers
@@ -26,7 +28,8 @@ const
 {
   controller_interface::InterfaceConfiguration config;
   config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
-  config.names.emplace_back("runtime_config/control_mode");
+  config.names.emplace_back(
+    std::string(hardware_interface::CONFIG_PREFIX) + "/" + hardware_interface::CONTROL_MODE);
   return config;
 }
 
@@ -40,8 +43,9 @@ const
 controller_interface::CallbackReturn
 ControlModeHandler::on_configure(const rclcpp_lifecycle::State &)
 {
+  // TODO(Svastits): consider server instead of simple subscription
   control_mode_subscriber_ = get_node()->create_subscription<std_msgs::msg::UInt32>(
-    "control_mode", rclcpp::SystemDefaultsQoS(),
+    "~/control_mode", rclcpp::SystemDefaultsQoS(),
     [this](const std_msgs::msg::UInt32::SharedPtr msg) {
       control_mode_ = kuka_drivers_core::ControlMode(msg->data);
       RCLCPP_INFO(get_node()->get_logger(), "Control mode changed to %u", msg->data);

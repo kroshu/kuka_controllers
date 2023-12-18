@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>joint_impedance_controller</name>
+  <name>joint_group_impedance_controller</name>
   <version>0.0.0</version>
   <description>Controller for managing the timing of the FRI hardware interface</description>
 
@@ -15,6 +15,7 @@
   <depend>pluginlib</depend>
   <depend>rclcpp_lifecycle</depend>
   <depend>std_msgs</depend>
+  <depend>kuka_drivers_core</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
