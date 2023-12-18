@@ -15,6 +15,7 @@
 #include "pluginlib/class_list_macros.hpp"
 
 #include "controller_interface/controller_interface.hpp"
+#include "kuka_drivers_core/hardware_interface_types.h"
 
 #include "joint_group_impedance_controller/joint_group_impedance_controller.hpp"
 
@@ -30,7 +31,10 @@ controller_interface::CallbackReturn JointGroupImpedanceController::on_init()
   try {
     // Explicitly set the interfaces parameter declared by the forward_command_controller
     get_node()->set_parameter(
-      rclcpp::Parameter("interface_names", std::vector<std::string>{"stiffness", "damping"}));
+      rclcpp::Parameter(
+        "interface_names",
+        std::vector<std::string>{hardware_interface::HW_IF_STIFFNESS,
+          hardware_interface::HW_IF_DAMPING}));
   } catch (const std::exception & e) {
     fprintf(stderr, "Exception thrown during init stage with message: %s \n", e.what());
     return CallbackReturn::ERROR;
@@ -38,7 +42,6 @@ controller_interface::CallbackReturn JointGroupImpedanceController::on_init()
 
   return CallbackReturn::SUCCESS;
 }
-
 }  // namespace kuka_controllers
 
 PLUGINLIB_EXPORT_CLASS(

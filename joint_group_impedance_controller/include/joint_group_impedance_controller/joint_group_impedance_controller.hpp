@@ -24,7 +24,6 @@
 
 #include "forward_command_controller/multi_interface_forward_command_controller.hpp"
 
-
 namespace kuka_controllers
 {
 class JointGroupImpedanceController : public forward_command_controller::
@@ -32,7 +31,6 @@ class JointGroupImpedanceController : public forward_command_controller::
 {
 public:
   controller_interface::CallbackReturn on_init() override;
-
 };
 }  // namespace kuka_controllers
 #endif  // JOINT_GROUP_IMPEDANCE_CONTROLLER__JOINT_GROUP_IMPEDANCE_CONTROLLER_HPP_

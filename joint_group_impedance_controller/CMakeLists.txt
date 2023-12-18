@@ -10,6 +10,7 @@ find_package(pluginlib REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_lifecycle REQUIRED)
 find_package(forward_command_controller)
+find_package(kuka_drivers_core)
 
 include_directories(include)
 
@@ -20,7 +21,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
   include
 )
 
-ament_target_dependencies(${PROJECT_NAME} rclcpp forward_command_controller
+ament_target_dependencies(${PROJECT_NAME} rclcpp forward_command_controller kuka_drivers_core
 )
 
 pluginlib_export_plugin_description_file(controller_interface controller_plugins.xml)
