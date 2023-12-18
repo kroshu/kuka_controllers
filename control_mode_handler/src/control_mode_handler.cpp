@@ -43,6 +43,7 @@ const
 controller_interface::CallbackReturn
 ControlModeHandler::on_configure(const rclcpp_lifecycle::State &)
 {
+  // TODO(Svastits): consider server instead of simple subscription
   control_mode_subscriber_ = get_node()->create_subscription<std_msgs::msg::UInt32>(
     "~/control_mode", rclcpp::SystemDefaultsQoS(),
     [this](const std_msgs::msg::UInt32::SharedPtr msg) {
