@@ -24,6 +24,7 @@
 #include "forward_command_controller/multi_interface_forward_command_controller.hpp"
 
 #include "joint_group_impedance_controller_parameters.hpp"
+#include "joint_group_impedance_controller/visibility_control.h"
 
 namespace kuka_controllers
 {
@@ -31,12 +32,13 @@ class JointGroupImpedanceController : public forward_command_controller::
   ForwardControllersBase
 {
 public:
-  JointGroupImpedanceController();
-  controller_interface::CallbackReturn on_init() override;
+  JOINT_GROUP_IMPEDANCE_CONTROLLER_PUBLIC JointGroupImpedanceController();
+  JOINT_GROUP_IMPEDANCE_CONTROLLER_PUBLIC controller_interface::CallbackReturn on_init() override;
 
 private:
-  void declare_parameters() override;
-  controller_interface::CallbackReturn read_parameters() override;
+  JOINT_GROUP_IMPEDANCE_CONTROLLER_LOCAL void declare_parameters() override;
+  JOINT_GROUP_IMPEDANCE_CONTROLLER_LOCAL controller_interface::CallbackReturn read_parameters()
+  override;
 
   using Params = joint_group_impedance_controller::Params;
   using ParamListener = joint_group_impedance_controller::ParamListener;

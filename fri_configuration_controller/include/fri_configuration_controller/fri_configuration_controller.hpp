@@ -24,33 +24,37 @@
 #include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 #include "rclcpp/time.hpp"
 #include "rclcpp/duration.hpp"
+#include "pluginlib/class_list_macros.hpp"
 #include "kuka_driver_interfaces/srv/set_int.hpp"
 
-#include "pluginlib/class_list_macros.hpp"
+#include "fri_configuration_controller/visibility_control.h"
+
 
 namespace kuka_controllers
 {
 class FRIConfigurationController : public controller_interface::ControllerInterface
 {
 public:
-  controller_interface::InterfaceConfiguration command_interface_configuration() const override;
+  FRI_CONFIGURATION_CONTROLLER_PUBLIC controller_interface::InterfaceConfiguration
+  command_interface_configuration() const override;
 
-  controller_interface::InterfaceConfiguration state_interface_configuration() const override;
+  FRI_CONFIGURATION_CONTROLLER_PUBLIC controller_interface::InterfaceConfiguration
+  state_interface_configuration() const override;
 
-  controller_interface::return_type update(
+  FRI_CONFIGURATION_CONTROLLER_PUBLIC controller_interface::return_type update(
     const rclcpp::Time & time,
     const rclcpp::Duration & period) override;
 
-  controller_interface::CallbackReturn on_configure(const rclcpp_lifecycle::State & previous_state)
-  override;
+  FRI_CONFIGURATION_CONTROLLER_PUBLIC controller_interface::CallbackReturn on_configure(
+    const rclcpp_lifecycle::State & previous_state) override;
 
-  controller_interface::CallbackReturn on_activate(const rclcpp_lifecycle::State & previous_state)
-  override;
+  FRI_CONFIGURATION_CONTROLLER_PUBLIC controller_interface::CallbackReturn on_activate(
+    const rclcpp_lifecycle::State & previous_state) override;
 
-  controller_interface::CallbackReturn on_deactivate(const rclcpp_lifecycle::State & previous_state)
-  override;
+  FRI_CONFIGURATION_CONTROLLER_PUBLIC controller_interface::CallbackReturn on_deactivate(
+    const rclcpp_lifecycle::State & previous_state) override;
 
-  controller_interface::CallbackReturn on_init() override;
+  FRI_CONFIGURATION_CONTROLLER_PUBLIC controller_interface::CallbackReturn on_init() override;
 
 private:
   rclcpp::Service<kuka_driver_interfaces::srv::SetInt>::SharedPtr receive_multiplier_service_;
