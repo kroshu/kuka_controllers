@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include "kuka_drivers_core/hardware_interface_types.hpp"
+
 #include "fri_state_broadcaster/fri_state_broadcaster.hpp"
 
 namespace kuka_controllers
@@ -36,15 +38,26 @@ const
 {
   controller_interface::InterfaceConfiguration config;
   config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
-  config.names.emplace_back("state/session_state");
-  config.names.emplace_back("state/connection_quality");
-  config.names.emplace_back("state/safety_state");
-  config.names.emplace_back("state/command_mode");
-  config.names.emplace_back("state/control_mode");
-  config.names.emplace_back("state/operation_mode");
-  config.names.emplace_back("state/drive_state");
-  config.names.emplace_back("state/overlay_type");
-  config.names.emplace_back("state/tracking_performance");
+  config.names.emplace_back(
+    std::string(hardware_interface::FRI_STATE_PREFIX) + "/" + hardware_interface::SESSION_STATE);
+  config.names.emplace_back(
+    std::string(hardware_interface::FRI_STATE_PREFIX) + "/" +
+    hardware_interface::CONNECTION_QUALITY);
+  config.names.emplace_back(
+    std::string(hardware_interface::FRI_STATE_PREFIX) + "/" + hardware_interface::SAFETY_STATE);
+  config.names.emplace_back(
+    std::string(hardware_interface::FRI_STATE_PREFIX) + "/" + hardware_interface::COMMAND_MODE);
+  config.names.emplace_back(
+    std::string(hardware_interface::FRI_STATE_PREFIX) + "/" + hardware_interface::CONTROL_MODE);
+  config.names.emplace_back(
+    std::string(hardware_interface::FRI_STATE_PREFIX) + "/" + hardware_interface::OPERATION_MODE);
+  config.names.emplace_back(
+    std::string(hardware_interface::FRI_STATE_PREFIX) + "/" + hardware_interface::DRIVE_STATE);
+  config.names.emplace_back(
+    std::string(hardware_interface::FRI_STATE_PREFIX) + "/" + hardware_interface::OVERLAY_TYPE);
+  config.names.emplace_back(
+    std::string(
+      hardware_interface::FRI_STATE_PREFIX) + "/" + hardware_interface::TRACKING_PERFORMANCE);
   return config;
 }
 

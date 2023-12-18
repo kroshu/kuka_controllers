@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include "kuka_drivers_core/hardware_interface_types.hpp"
+
 #include "control_mode_handler/control_mode_handler.hpp"
 
 namespace kuka_controllers
@@ -26,7 +28,8 @@ const
 {
   controller_interface::InterfaceConfiguration config;
   config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
-  config.names.emplace_back("runtime_config/control_mode");
+  config.names.emplace_back(
+    std::string(hardware_interface::CONFIG_PREFIX) + "/" + hardware_interface::CONTROL_MODE);
   return config;
 }
 
