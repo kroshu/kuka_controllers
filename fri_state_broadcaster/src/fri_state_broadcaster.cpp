@@ -25,16 +25,15 @@ controller_interface::CallbackReturn FRIStateBroadcaster::on_init()
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
-controller_interface::InterfaceConfiguration
-FRIStateBroadcaster::command_interface_configuration()
-const
+controller_interface::InterfaceConfiguration FRIStateBroadcaster::command_interface_configuration()
+  const
 {
-  return controller_interface::InterfaceConfiguration{controller_interface::
-    interface_configuration_type::NONE};
+  return controller_interface::InterfaceConfiguration{
+    controller_interface::interface_configuration_type::NONE};
 }
 
 controller_interface::InterfaceConfiguration FRIStateBroadcaster::state_interface_configuration()
-const
+  const
 {
   controller_interface::InterfaceConfiguration config;
   config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
@@ -56,32 +55,31 @@ const
   config.names.emplace_back(
     std::string(hardware_interface::FRI_STATE_PREFIX) + "/" + hardware_interface::OVERLAY_TYPE);
   config.names.emplace_back(
-    std::string(
-      hardware_interface::FRI_STATE_PREFIX) + "/" + hardware_interface::TRACKING_PERFORMANCE);
+    std::string(hardware_interface::FRI_STATE_PREFIX) + "/" +
+    hardware_interface::TRACKING_PERFORMANCE);
   return config;
 }
 
-controller_interface::CallbackReturn
-FRIStateBroadcaster::on_configure(const rclcpp_lifecycle::State &)
+controller_interface::CallbackReturn FRIStateBroadcaster::on_configure(
+  const rclcpp_lifecycle::State &)
 {
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
-controller_interface::CallbackReturn
-FRIStateBroadcaster::on_activate(const rclcpp_lifecycle::State &)
+controller_interface::CallbackReturn FRIStateBroadcaster::on_activate(
+  const rclcpp_lifecycle::State &)
 {
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
-controller_interface::CallbackReturn
-FRIStateBroadcaster::on_deactivate(const rclcpp_lifecycle::State &)
+controller_interface::CallbackReturn FRIStateBroadcaster::on_deactivate(
+  const rclcpp_lifecycle::State &)
 {
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
 controller_interface::return_type FRIStateBroadcaster::update(
-  const rclcpp::Time &,
-  const rclcpp::Duration &)
+  const rclcpp::Time &, const rclcpp::Duration &)
 {
   state_msg_.session_state = static_cast<int>(state_interfaces_[0].get_value());
   state_msg_.connection_quality = static_cast<int>(state_interfaces_[1].get_value());
@@ -93,7 +91,8 @@ controller_interface::return_type FRIStateBroadcaster::update(
   state_msg_.overlay_type = static_cast<int>(state_interfaces_[7].get_value());
   state_msg_.tracking_performance = state_interfaces_[8].get_value();
 
-  if (counter_++ == 10) {
+  if (counter_++ == 10)
+  {
     robot_state_publisher_->publish(state_msg_);
     counter_ = 0;
   }
@@ -104,5 +103,4 @@ controller_interface::return_type FRIStateBroadcaster::update(
 }  // namespace kuka_controllers
 
 PLUGINLIB_EXPORT_CLASS(
-  kuka_controllers::FRIStateBroadcaster,
-  controller_interface::ControllerInterface)
+  kuka_controllers::FRIStateBroadcaster, controller_interface::ControllerInterface)

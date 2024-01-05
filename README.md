@@ -27,7 +27,7 @@ __Required parameters__:
 #### `effort_controllers`
 This package is available in the `ros2_controllers` repo, however the `JointGroupPositionController` was not ported to `humble`, at the time of writing only a [draft PR](https://github.com/ros-controls/ros2_controllers/pull/198) exists for it. To add this functionality, the contents of the PR were copied here.
 
-The `effort_controllers/JointGroupEffortController` is a command forwarding controller for torque command interfaces. It accepts torque input on the `~/command` topic and updates the configured torque command interfaces without checking for limits. 
+The `effort_controllers/JointGroupEffortController` is a command forwarding controller for torque command interfaces. It accepts torque input on the `~/command` topic and updates the configured torque command interfaces without checking for limits.
 
 __Required parameters__:
 - `joints` [string_array]: Names of joints used by the controller
@@ -36,7 +36,7 @@ The `effort_controllers/JointGroupPositionController` implements a PID controlle
 
 __Required parameters__:
 - `joints` [string_array]: Names of joints used by the controller
-- `gains/<joint_name>/p` [double]: Proportianal term of the controller for *joint_name*
+- `gains/<joint_name>/p` [double]: Proportional term of the controller for *joint_name*
 - `gains/<joint_name>/i` [double]: Integral term of the controller for *joint_name*
 - `gains/<joint_name>/d` [double]: Derivative term of the controller for *joint_name*
 
@@ -62,6 +62,6 @@ __Required parameters__: None
 
 #### `fri_configuration_controller`
 
-The `receive_multiplier` parameter of FRI defines the answer rate factor (ratio of receiving states and sending commands). This is a parameter of the hardware interface, which can be modified in connected state, when control is not active. To support changing this parameter after startup, the `FRIConfigurationController` implementes a service named `~/set_receive_multiplier`. Sending a request containing the desired integer value of the `receive_multiplier` updates the parameter of the hardware interface.
+The `receive_multiplier` parameter of FRI defines the answer rate factor (ratio of receiving states and sending commands). This is a parameter of the hardware interface, which can be modified in connected state, when control is not active. To support changing this parameter after startup, the `FRIConfigurationController` implements a service named `~/set_receive_multiplier`. Sending a request containing the desired integer value of the `receive_multiplier` updates the parameter of the hardware interface.
 
 __Required parameters__: None
