@@ -4,7 +4,6 @@
 name: Pre-commit format
 run-name: Pre-commit format - ${{ github.event_name }}
 
-
 on:
   workflow_dispatch:
   pull_request:
