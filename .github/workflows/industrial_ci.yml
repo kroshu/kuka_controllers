@@ -29,6 +29,7 @@ on:
 
 jobs:
   industrial_ci:
+    name: ROS-Industrial CI
     strategy:
       matrix:
         env:
