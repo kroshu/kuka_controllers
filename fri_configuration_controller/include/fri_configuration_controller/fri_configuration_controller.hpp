@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef FRI_CONFIGURATION_CONTROLLER__FRI_CONFIGURATION_CONTROLLER_HPP_
 #define FRI_CONFIGURATION_CONTROLLER__FRI_CONFIGURATION_CONTROLLER_HPP_
 
@@ -21,29 +20,27 @@
 #include <vector>
 
 #include "controller_interface/controller_interface.hpp"
-#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
-#include "rclcpp/time.hpp"
-#include "rclcpp/duration.hpp"
-#include "pluginlib/class_list_macros.hpp"
 #include "kuka_driver_interfaces/srv/set_int.hpp"
+#include "pluginlib/class_list_macros.hpp"
+#include "rclcpp/duration.hpp"
+#include "rclcpp/time.hpp"
+#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 
 #include "fri_configuration_controller/visibility_control.h"
-
 
 namespace kuka_controllers
 {
 class FRIConfigurationController : public controller_interface::ControllerInterface
 {
 public:
-  FRI_CONFIGURATION_CONTROLLER_PUBLIC controller_interface::InterfaceConfiguration
-  command_interface_configuration() const override;
+  FRI_CONFIGURATION_CONTROLLER_PUBLIC
+  controller_interface::InterfaceConfiguration command_interface_configuration() const override;
 
-  FRI_CONFIGURATION_CONTROLLER_PUBLIC controller_interface::InterfaceConfiguration
-  state_interface_configuration() const override;
+  FRI_CONFIGURATION_CONTROLLER_PUBLIC
+  controller_interface::InterfaceConfiguration state_interface_configuration() const override;
 
   FRI_CONFIGURATION_CONTROLLER_PUBLIC controller_interface::return_type update(
-    const rclcpp::Time & time,
-    const rclcpp::Duration & period) override;
+    const rclcpp::Time & time, const rclcpp::Duration & period) override;
 
   FRI_CONFIGURATION_CONTROLLER_PUBLIC controller_interface::CallbackReturn on_configure(
     const rclcpp_lifecycle::State & previous_state) override;

@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef CONTROL_MODE_HANDLER__CONTROL_MODE_HANDLER_HPP_
 #define CONTROL_MODE_HANDLER__CONTROL_MODE_HANDLER_HPP_
 
@@ -21,12 +20,12 @@
 #include <vector>
 
 #include "controller_interface/controller_interface.hpp"
-#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
-#include "rclcpp/time.hpp"
-#include "rclcpp/duration.hpp"
-#include "std_msgs/msg/u_int32.hpp"
-#include "pluginlib/class_list_macros.hpp"
 #include "kuka_drivers_core/control_mode.hpp"
+#include "pluginlib/class_list_macros.hpp"
+#include "rclcpp/duration.hpp"
+#include "rclcpp/time.hpp"
+#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
+#include "std_msgs/msg/u_int32.hpp"
 
 #include "control_mode_handler/visibility_control.h"
 
@@ -42,8 +41,7 @@ public:
   state_interface_configuration() const override;
 
   CONTROL_MODE_HANDLER_PUBLIC controller_interface::return_type update(
-    const rclcpp::Time & time,
-    const rclcpp::Duration & period) override;
+    const rclcpp::Time & time, const rclcpp::Duration & period) override;
 
   CONTROL_MODE_HANDLER_PUBLIC controller_interface::CallbackReturn on_configure(
     const rclcpp_lifecycle::State & previous_state) override;

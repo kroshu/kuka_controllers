@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef JOINT_GROUP_IMPEDANCE_CONTROLLER__JOINT_GROUP_IMPEDANCE_CONTROLLER_HPP_
 #define JOINT_GROUP_IMPEDANCE_CONTROLLER__JOINT_GROUP_IMPEDANCE_CONTROLLER_HPP_
 
@@ -20,16 +19,15 @@
 #include <string>
 #include <vector>
 
-#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 #include "forward_command_controller/multi_interface_forward_command_controller.hpp"
+#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 
-#include "joint_group_impedance_controller_parameters.hpp"
 #include "joint_group_impedance_controller/visibility_control.h"
+#include "joint_group_impedance_controller_parameters.hpp"
 
 namespace kuka_controllers
 {
-class JointGroupImpedanceController : public forward_command_controller::
-  ForwardControllersBase
+class JointGroupImpedanceController : public forward_command_controller::ForwardControllersBase
 {
 public:
   JOINT_GROUP_IMPEDANCE_CONTROLLER_PUBLIC JointGroupImpedanceController();
@@ -38,7 +36,7 @@ public:
 private:
   JOINT_GROUP_IMPEDANCE_CONTROLLER_LOCAL void declare_parameters() override;
   JOINT_GROUP_IMPEDANCE_CONTROLLER_LOCAL controller_interface::CallbackReturn read_parameters()
-  override;
+    override;
 
   using Params = joint_group_impedance_controller::Params;
   using ParamListener = joint_group_impedance_controller::ParamListener;

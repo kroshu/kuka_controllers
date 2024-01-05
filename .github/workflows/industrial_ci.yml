@@ -35,7 +35,7 @@ jobs:
           BUILDER: colcon
           ANALYZER: sonarqube
           # TODO: only the kuka_driver interfaces package is needed from upstream WS
-          # kuka_robot_descriptions is nedded as upstream for drivers...
+          # kuka_robot_descriptions is needed as upstream for drivers...
           UPSTREAM_WORKSPACE: 'github:kroshu/kuka_drivers#master -kuka_drivers/examples -kuka_drivers/kuka_drivers -kuka_drivers/kuka_iiqka_eac_driver -kuka_drivers/kuka_kss_rsi_driver -kuka_drivers/kuka_sunrise_fri_driver'
           TEST_COVERAGE: true
           ROS_DISTRO: humble

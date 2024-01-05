@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 #ifndef FRI_STATE_BROADCASTER__FRI_STATE_BROADCASTER_HPP_
 #define FRI_STATE_BROADCASTER__FRI_STATE_BROADCASTER_HPP_
 
@@ -21,14 +20,13 @@
 #include <vector>
 
 #include "controller_interface/controller_interface.hpp"
-#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 #include "kuka_driver_interfaces/msg/fri_state.hpp"
-#include "rclcpp/time.hpp"
-#include "rclcpp/duration.hpp"
 #include "pluginlib/class_list_macros.hpp"
+#include "rclcpp/duration.hpp"
+#include "rclcpp/time.hpp"
+#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 
 #include "fri_state_broadcaster/visibility_control.h"
-
 
 namespace kuka_controllers
 {
@@ -42,8 +40,7 @@ public:
   state_interface_configuration() const override;
 
   FRI_STATE_BROADCASTER_PUBLIC controller_interface::return_type update(
-    const rclcpp::Time & time,
-    const rclcpp::Duration & period) override;
+    const rclcpp::Time & time, const rclcpp::Duration & period) override;
 
   FRI_STATE_BROADCASTER_PUBLIC controller_interface::CallbackReturn on_configure(
     const rclcpp_lifecycle::State & previous_state) override;

@@ -15,25 +15,27 @@
 #ifndef EFFORT_CONTROLLERS__JOINT_GROUP_POSITION_CONTROLLER_HPP_
 #define EFFORT_CONTROLLERS__JOINT_GROUP_POSITION_CONTROLLER_HPP_
 
-#include <vector>
 #include <string>
+#include <vector>
 
 #include "control_toolbox/pid.hpp"
-#include "forward_command_controller/forward_command_controller.hpp"
 #include "effort_controllers/visibility_control.h"
+#include "forward_command_controller/forward_command_controller.hpp"
 
 namespace effort_controllers
 {
 
 /**
- * \brief Forward command controller for a set of effort controlled joints (linear or angular).
+ * \brief Forward command controller for a set of effort controlled joints
+ * (linear or angular).
  *
  * This class forwards the commanded efforts down to a set of joints.
  *
  * \param joints Names of the joints to control.
  *
  * Subscribes to:
- * - \b command (std_msgs::msg::Float64MultiArray) : The effort commands to apply.
+ * - \b command (std_msgs::msg::Float64MultiArray) : The effort commands to
+ * apply.
  */
 class JointGroupPositionController : public forward_command_controller::ForwardCommandController
 {
@@ -42,28 +44,23 @@ public:
   JointGroupPositionController();
 
   EFFORT_CONTROLLERS_PUBLIC
-  controller_interface::CallbackReturn
-  on_init() override;
+  controller_interface::CallbackReturn on_init() override;
 
   EFFORT_CONTROLLERS_PUBLIC
-  controller_interface::InterfaceConfiguration
-  state_interface_configuration() const override;
+  controller_interface::InterfaceConfiguration state_interface_configuration() const override;
 
   EFFORT_CONTROLLERS_PUBLIC
-  CallbackReturn
-  on_configure(const rclcpp_lifecycle::State & previous_state) override;
+  CallbackReturn on_configure(const rclcpp_lifecycle::State & previous_state) override;
 
   EFFORT_CONTROLLERS_PUBLIC
-  CallbackReturn
-  on_activate(const rclcpp_lifecycle::State & previous_state) override;
+  CallbackReturn on_activate(const rclcpp_lifecycle::State & previous_state) override;
 
   EFFORT_CONTROLLERS_PUBLIC
-  CallbackReturn
-  on_deactivate(const rclcpp_lifecycle::State & previous_state) override;
+  CallbackReturn on_deactivate(const rclcpp_lifecycle::State & previous_state) override;
 
   EFFORT_CONTROLLERS_PUBLIC
-  controller_interface::return_type
-  update(const rclcpp::Time & time, const rclcpp::Duration & period) override;
+  controller_interface::return_type update(
+    const rclcpp::Time & time, const rclcpp::Duration & period) override;
 
 private:
   std::vector<control_toolbox::Pid> pids_;

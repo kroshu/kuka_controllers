@@ -27,7 +27,7 @@ __Required parameters__:
 #### `effort_controllers`
 This package is available in the `ros2_controllers` repo, however the `JointGroupPositionController` was not ported to `humble`, at the time of writing only a [draft PR](https://github.com/ros-controls/ros2_controllers/pull/198) exists for it. To add this functionality, the contents of the PR were copied here.
 
-The `effort_controllers/JointGroupEffortController` is a command forwarding controller for torque command interfaces. It accepts torque input on the `~/command` topic and updates the configured torque command interfaces without checking for limits. 
+The `effort_controllers/JointGroupEffortController` is a command forwarding controller for torque command interfaces. It accepts torque input on the `~/command` topic and updates the configured torque command interfaces without checking for limits.
 
 __Required parameters__:
 - `joints` [string_array]: Names of joints used by the controller

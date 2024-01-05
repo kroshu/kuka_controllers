@@ -22,10 +22,7 @@
 namespace kuka_controllers
 {
 
-JointGroupImpedanceController::JointGroupImpedanceController()
-: ForwardControllersBase()
-{
-}
+JointGroupImpedanceController::JointGroupImpedanceController() : ForwardControllersBase() {}
 
 void JointGroupImpedanceController::declare_parameters()
 {
@@ -34,24 +31,29 @@ void JointGroupImpedanceController::declare_parameters()
 
 controller_interface::CallbackReturn JointGroupImpedanceController::read_parameters()
 {
-  if (!param_listener_) {
+  if (!param_listener_)
+  {
     RCLCPP_ERROR(get_node()->get_logger(), "Error encountered during init");
     return controller_interface::CallbackReturn::ERROR;
   }
   params_ = param_listener_->get_params();
 
-  if (params_.joints.empty()) {
+  if (params_.joints.empty())
+  {
     RCLCPP_ERROR(get_node()->get_logger(), "'joints' parameter is empty");
     return controller_interface::CallbackReturn::ERROR;
   }
 
-  if (params_.interface_names.empty()) {
+  if (params_.interface_names.empty())
+  {
     RCLCPP_ERROR(get_node()->get_logger(), "'interfaces' parameter is empty");
     return controller_interface::CallbackReturn::ERROR;
   }
 
-  for (const auto & joint : params_.joints) {
-    for (const auto & interface : params_.interface_names) {
+  for (const auto & joint : params_.joints)
+  {
+    for (const auto & interface : params_.interface_names)
+    {
       command_interface_types_.push_back(joint + "/" + interface);
     }
   }
@@ -59,22 +61,25 @@ controller_interface::CallbackReturn JointGroupImpedanceController::read_paramet
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
-
 controller_interface::CallbackReturn JointGroupImpedanceController::on_init()
 {
   auto ret = ForwardControllersBase::on_init();
-  if (ret != CallbackReturn::SUCCESS) {
+  if (ret != CallbackReturn::SUCCESS)
+  {
     return ret;
   }
 
-  try {
-    // Explicitly set the interfaces parameter declared by the forward_command_controller
-    get_node()->set_parameter(
-      rclcpp::Parameter(
-        "interface_names",
-        std::vector<std::string>{hardware_interface::HW_IF_STIFFNESS,
-          hardware_interface::HW_IF_DAMPING}));
-  } catch (const std::exception & e) {
+  try
+  {
+    // Explicitly set the interfaces parameter declared by the
+    // forward_command_controller
+    get_node()->set_parameter(rclcpp::Parameter(
+      "interface_names",
+      std::vector<std::string>{
+        hardware_interface::HW_IF_STIFFNESS, hardware_interface::HW_IF_DAMPING}));
+  }
+  catch (const std::exception & e)
+  {
     fprintf(stderr, "Exception thrown during init stage with message: %s \n", e.what());
     return CallbackReturn::ERROR;
   }
@@ -84,5 +89,4 @@ controller_interface::CallbackReturn JointGroupImpedanceController::on_init()
 }  // namespace kuka_controllers
 
 PLUGINLIB_EXPORT_CLASS(
-  kuka_controllers::JointGroupImpedanceController,
-  controller_interface::ControllerInterface)
+  kuka_controllers::JointGroupImpedanceController, controller_interface::ControllerInterface)

@@ -24,7 +24,7 @@ controller_interface::CallbackReturn ControlModeHandler::on_init()
 }
 
 controller_interface::InterfaceConfiguration ControlModeHandler::command_interface_configuration()
-const
+  const
 {
   controller_interface::InterfaceConfiguration config;
   config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
@@ -34,19 +34,20 @@ const
 }
 
 controller_interface::InterfaceConfiguration ControlModeHandler::state_interface_configuration()
-const
+  const
 {
-  return controller_interface::InterfaceConfiguration{controller_interface::
-    interface_configuration_type::NONE};
+  return controller_interface::InterfaceConfiguration{
+    controller_interface::interface_configuration_type::NONE};
 }
 
-controller_interface::CallbackReturn
-ControlModeHandler::on_configure(const rclcpp_lifecycle::State &)
+controller_interface::CallbackReturn ControlModeHandler::on_configure(
+  const rclcpp_lifecycle::State &)
 {
   // TODO(Svastits): consider server instead of simple subscription
   control_mode_subscriber_ = get_node()->create_subscription<std_msgs::msg::UInt32>(
     "~/control_mode", rclcpp::SystemDefaultsQoS(),
-    [this](const std_msgs::msg::UInt32::SharedPtr msg) {
+    [this](const std_msgs::msg::UInt32::SharedPtr msg)
+    {
       control_mode_ = kuka_drivers_core::ControlMode(msg->data);
       RCLCPP_INFO(get_node()->get_logger(), "Control mode changed to %u", msg->data);
     });
@@ -54,25 +55,25 @@ ControlModeHandler::on_configure(const rclcpp_lifecycle::State &)
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
-controller_interface::CallbackReturn
-ControlModeHandler::on_activate(const rclcpp_lifecycle::State &)
+controller_interface::CallbackReturn ControlModeHandler::on_activate(
+  const rclcpp_lifecycle::State &)
 {
-  if (control_mode_ <= kuka_drivers_core::ControlMode::UNSPECIFIED_CONTROL_MODE) {
+  if (control_mode_ <= kuka_drivers_core::ControlMode::UNSPECIFIED_CONTROL_MODE)
+  {
     throw std::runtime_error("Control mode unspecified");
   }
 
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
-controller_interface::CallbackReturn
-ControlModeHandler::on_deactivate(const rclcpp_lifecycle::State &)
+controller_interface::CallbackReturn ControlModeHandler::on_deactivate(
+  const rclcpp_lifecycle::State &)
 {
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
 controller_interface::return_type ControlModeHandler::update(
-  const rclcpp::Time &,
-  const rclcpp::Duration &)
+  const rclcpp::Time &, const rclcpp::Duration &)
 {
   command_interfaces_[0].set_value(static_cast<double>(control_mode_));
   return controller_interface::return_type::OK;
@@ -81,5 +82,4 @@ controller_interface::return_type ControlModeHandler::update(
 }  // namespace kuka_controllers
 
 PLUGINLIB_EXPORT_CLASS(
-  kuka_controllers::ControlModeHandler,
-  controller_interface::ControllerInterface)
+  kuka_controllers::ControlModeHandler, controller_interface::ControllerInterface)
