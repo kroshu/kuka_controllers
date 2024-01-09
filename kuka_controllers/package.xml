@@ -3,8 +3,8 @@
   <name>kuka_controllers</name>
   <version>0.0.1</version>
   <description>ROS2 Controllers for KUKA robots</description>
-  <author>Áron Svastits</author>
-  <maintainer email="svastits1@gmail.com">Áron Svastits</maintainer>
+  <author>Aron Svastits</author>
+  <maintainer email="svastits1@gmail.com">Aron Svastits</maintainer>
   <license>BSD</license>
 
   <url type="bugtracker">https://github.com/kroshu/kuka_controllers/issues</url>
