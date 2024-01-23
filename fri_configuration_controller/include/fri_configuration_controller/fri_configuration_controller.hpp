@@ -20,7 +20,7 @@
 #include <vector>
 
 #include "controller_interface/controller_interface.hpp"
-#include "kuka_driver_interfaces/srv/set_int.hpp"
+#include "kuka_driver_interfaces/srv/set_fri_configuration.hpp"
 #include "pluginlib/class_list_macros.hpp"
 #include "rclcpp/duration.hpp"
 #include "rclcpp/time.hpp"
@@ -54,7 +54,7 @@ public:
   FRI_CONFIGURATION_CONTROLLER_PUBLIC controller_interface::CallbackReturn on_init() override;
 
 private:
-  rclcpp::Service<kuka_driver_interfaces::srv::SetInt>::SharedPtr receive_multiplier_service_;
+  rclcpp::Service<kuka_driver_interfaces::srv::SetFriConfiguration>::SharedPtr receive_multiplier_service_;
   int receive_multiplier_ = 1;
   bool resend_multiplier_ = false;
 };

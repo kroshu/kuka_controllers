@@ -21,15 +21,15 @@ namespace kuka_controllers
 controller_interface::CallbackReturn FRIConfigurationController::on_init()
 {
   auto callback = [this](
-                    kuka_driver_interfaces::srv::SetInt::Request::SharedPtr request,
-                    kuka_driver_interfaces::srv::SetInt::Response::SharedPtr response)
+                    kuka_driver_interfaces::srv::SetFriConfiguration::Request::SharedPtr request,
+                    kuka_driver_interfaces::srv::SetFriConfiguration::Response::SharedPtr response)
   {
     resend_multiplier_ = true;
     receive_multiplier_ = request->data;
     response->success = true;
   };
-  receive_multiplier_service_ = get_node()->create_service<kuka_driver_interfaces::srv::SetInt>(
-    "~/set_receive_multiplier", callback);
+  receive_multiplier_service_ = get_node()->create_service<kuka_driver_interfaces::srv::SetFriConfiguration>(
+    "~/set_fri_config", callback);
   // TODO(Svastits): create service to get multiplier changes (or perpaps
   // parameter??)
   //   and set resend_multiplier_ to true in the callback
