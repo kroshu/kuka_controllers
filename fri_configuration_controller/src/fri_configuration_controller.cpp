@@ -81,7 +81,7 @@ controller_interface::return_type FRIConfigurationController::update(
   if (update_config_)
   {
     RCLCPP_INFO(
-      get_node()->get_logger(), "Updating FRI configuration of hardware interface to: receive multipliier is %i, send period is %i [ms]",
+      get_node()->get_logger(), "Updating FRI configuration of hardware interface: receive multiplier is %i, send period is %i [ms]",
       receive_multiplier_, send_period_ms_);
     command_interfaces_[0].set_value(receive_multiplier_);
     command_interfaces_[1].set_value(send_period_ms_);
