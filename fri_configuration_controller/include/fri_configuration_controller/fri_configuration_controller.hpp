@@ -56,7 +56,8 @@ public:
 private:
   rclcpp::Service<kuka_driver_interfaces::srv::SetFriConfiguration>::SharedPtr receive_multiplier_service_;
   int receive_multiplier_ = 1;
-  bool resend_multiplier_ = false;
+  int send_period_ms_= 10;
+  bool update_config_ = false;
 };
 }  // namespace kuka_controllers
 #endif  // FRI_CONFIGURATION_CONTROLLER__FRI_CONFIGURATION_CONTROLLER_HPP_
