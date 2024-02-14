@@ -36,7 +36,8 @@ controller_interface::InterfaceConfiguration EventBroadcaster::state_interface_c
 {
   controller_interface::InterfaceConfiguration config;
   config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
-  config.names.emplace_back(std::string(hardware_interface::STATE_PREFIX) + "/" + hardware_interface::SERVER_STATE);
+  config.names.emplace_back(
+    std::string(hardware_interface::STATE_PREFIX) + "/" + hardware_interface::SERVER_STATE);
   return config;
 }
 
