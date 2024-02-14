@@ -32,24 +32,20 @@ controller_interface::InterfaceConfiguration EventBroadcaster::command_interface
     controller_interface::interface_configuration_type::NONE};
 }
 
-controller_interface::InterfaceConfiguration EventBroadcaster::state_interface_configuration()
-  const
+controller_interface::InterfaceConfiguration EventBroadcaster::state_interface_configuration() const
 {
   controller_interface::InterfaceConfiguration config;
   config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
-  config.names.emplace_back(
-    std::string("state") + "/" + "server_state");
+  config.names.emplace_back(std::string("state") + "/" + "server_state");
   return config;
 }
 
-controller_interface::CallbackReturn EventBroadcaster::on_configure(
-  const rclcpp_lifecycle::State &)
+controller_interface::CallbackReturn EventBroadcaster::on_configure(const rclcpp_lifecycle::State &)
 {
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
-controller_interface::CallbackReturn EventBroadcaster::on_activate(
-  const rclcpp_lifecycle::State &)
+controller_interface::CallbackReturn EventBroadcaster::on_activate(const rclcpp_lifecycle::State &)
 {
   return controller_interface::CallbackReturn::SUCCESS;
 }
