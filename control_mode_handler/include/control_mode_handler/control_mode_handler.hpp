@@ -57,7 +57,7 @@ public:
 private:
   rclcpp::Subscription<std_msgs::msg::UInt32>::SharedPtr control_mode_subscriber_;
   kuka_drivers_core::ControlMode control_mode_ =
-    kuka_drivers_core::ControlMode::UNSPECIFIED_CONTROL_MODE;
+    kuka_drivers_core::ControlMode::CONTROL_MODE_UNSPECIFIED;
 };
 }  // namespace kuka_controllers
 #endif  // CONTROL_MODE_HANDLER__CONTROL_MODE_HANDLER_HPP_

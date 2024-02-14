@@ -58,7 +58,7 @@ controller_interface::CallbackReturn ControlModeHandler::on_configure(
 controller_interface::CallbackReturn ControlModeHandler::on_activate(
   const rclcpp_lifecycle::State &)
 {
-  if (control_mode_ <= kuka_drivers_core::ControlMode::UNSPECIFIED_CONTROL_MODE)
+  if (control_mode_ <= kuka_drivers_core::ControlMode::CONTROL_MODE_UNSPECIFIED)
   {
     throw std::runtime_error("Control mode unspecified");
   }
