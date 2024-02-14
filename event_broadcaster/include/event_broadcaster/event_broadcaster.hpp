@@ -1,4 +1,4 @@
-// Copyright 2022 Áron Svastits
+// Copyright 2024 Áron Svastits
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
 #include "rclcpp/duration.hpp"
 #include "rclcpp/time.hpp"
 #include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
-#include "std_msgs/msg/int64.hpp"
+#include "std_msgs/msg/u_int8.hpp"
 
 #include "event_broadcaster/visibility_control.h"
 
@@ -54,8 +54,8 @@ public:
   EVENT_BROADCASTER_PUBLIC controller_interface::CallbackReturn on_init() override;
 
 private:
-  rclcpp::Publisher<std_msgs::msg::Int64>::SharedPtr event_publisher_;
-  std_msgs::msg::Int64 event_msg_;
+  rclcpp::Publisher<std_msgs::msg::UInt8>::SharedPtr event_publisher_;
+  std_msgs::msg::UInt8 event_msg_;
   int last_event_ = 0;
 };
 }  // namespace kuka_controllers

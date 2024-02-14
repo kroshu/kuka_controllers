@@ -1,4 +1,4 @@
-// Copyright 2022 Áron Svastits
+// Copyright 2024 Áron Svastits
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ namespace kuka_controllers
 {
 controller_interface::CallbackReturn EventBroadcaster::on_init()
 {
-  event_publisher_ = get_node()->create_publisher<std_msgs::msg::Int64>(
+  event_publisher_ = get_node()->create_publisher<std_msgs::msg::UInt8>(
     "~/hardware_event", rclcpp::SystemDefaultsQoS());
   return controller_interface::CallbackReturn::SUCCESS;
 }
@@ -59,7 +59,7 @@ controller_interface::CallbackReturn EventBroadcaster::on_deactivate(
 controller_interface::return_type EventBroadcaster::update(
   const rclcpp::Time &, const rclcpp::Duration &)
 {
-  int current_event = static_cast<int>(state_interfaces_[0].get_value());
+  auto current_event = static_cast<uint8_t>(state_interfaces_[0].get_value());
   if (current_event != last_event_)
   {
     event_msg_.data = current_event;
