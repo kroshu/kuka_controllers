@@ -49,6 +49,18 @@ The `FRIStateBroadcaster` publishes the actual state of FRI to the `~/fri_state`
 
 __Required parameters__: None
 
+
+#### `event_broadcaster`
+
+The `EventBroadcaster` publishes server state change events as integers (enum values) on the `~/hardware_event` topic. The enum values are equivalent with the following events:
+- 2: Start command was accepted by the robot controller
+- 3: External control started
+- 4: External control stopped (by user)
+- 5: Control mode switch was successful (only relevant for drivers, where control mode can be changed in active state)
+- 6: External control stopped by an error (Error message is only available in the hardware interface)
+
+__Required parameters__: None
+
 ## Configuration controllers
 
 Hardware interfaces do not support parameters that can be changed in runtime. To provide this behaviour, configuration controllers can be used, which update specific command interfaces of a hardware, that are exported as a workaround instead of parameters.
