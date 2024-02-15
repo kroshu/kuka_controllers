@@ -65,6 +65,7 @@ controller_interface::return_type EventBroadcaster::update(
   {
     event_msg_.data = current_event;
     event_publisher_->publish(event_msg_);
+    last_event_ = current_event;
   }
   return controller_interface::return_type::OK;
 }
