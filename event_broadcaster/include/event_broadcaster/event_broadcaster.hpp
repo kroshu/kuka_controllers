@@ -1,4 +1,4 @@
-// Copyright 2022 Áron Svastits
+// Copyright 2024 Áron Svastits
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,52 +12,51 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef CONTROL_MODE_HANDLER__CONTROL_MODE_HANDLER_HPP_
-#define CONTROL_MODE_HANDLER__CONTROL_MODE_HANDLER_HPP_
+#ifndef EVENT_BROADCASTER__EVENT_BROADCASTER_HPP_
+#define EVENT_BROADCASTER__EVENT_BROADCASTER_HPP_
 
 #include <memory>
 #include <string>
 #include <vector>
 
 #include "controller_interface/controller_interface.hpp"
-#include "kuka_drivers_core/control_mode.hpp"
 #include "pluginlib/class_list_macros.hpp"
 #include "rclcpp/duration.hpp"
 #include "rclcpp/time.hpp"
 #include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
-#include "std_msgs/msg/u_int32.hpp"
+#include "std_msgs/msg/u_int8.hpp"
 
-#include "control_mode_handler/visibility_control.h"
+#include "event_broadcaster/visibility_control.h"
 
 namespace kuka_controllers
 {
-class ControlModeHandler : public controller_interface::ControllerInterface
+class EventBroadcaster : public controller_interface::ControllerInterface
 {
 public:
-  CONTROL_MODE_HANDLER_PUBLIC controller_interface::InterfaceConfiguration
+  EVENT_BROADCASTER_PUBLIC controller_interface::InterfaceConfiguration
   command_interface_configuration() const override;
 
-  CONTROL_MODE_HANDLER_PUBLIC controller_interface::InterfaceConfiguration
+  EVENT_BROADCASTER_PUBLIC controller_interface::InterfaceConfiguration
   state_interface_configuration() const override;
 
-  CONTROL_MODE_HANDLER_PUBLIC controller_interface::return_type update(
+  EVENT_BROADCASTER_PUBLIC controller_interface::return_type update(
     const rclcpp::Time & time, const rclcpp::Duration & period) override;
 
-  CONTROL_MODE_HANDLER_PUBLIC controller_interface::CallbackReturn on_configure(
+  EVENT_BROADCASTER_PUBLIC controller_interface::CallbackReturn on_configure(
     const rclcpp_lifecycle::State & previous_state) override;
 
-  CONTROL_MODE_HANDLER_PUBLIC controller_interface::CallbackReturn on_activate(
+  EVENT_BROADCASTER_PUBLIC controller_interface::CallbackReturn on_activate(
     const rclcpp_lifecycle::State & previous_state) override;
 
-  CONTROL_MODE_HANDLER_PUBLIC controller_interface::CallbackReturn on_deactivate(
+  EVENT_BROADCASTER_PUBLIC controller_interface::CallbackReturn on_deactivate(
     const rclcpp_lifecycle::State & previous_state) override;
 
-  CONTROL_MODE_HANDLER_PUBLIC controller_interface::CallbackReturn on_init() override;
+  EVENT_BROADCASTER_PUBLIC controller_interface::CallbackReturn on_init() override;
 
 private:
-  rclcpp::Subscription<std_msgs::msg::UInt32>::SharedPtr control_mode_subscriber_;
-  kuka_drivers_core::ControlMode control_mode_ =
-    kuka_drivers_core::ControlMode::CONTROL_MODE_UNSPECIFIED;
+  rclcpp::Publisher<std_msgs::msg::UInt8>::SharedPtr event_publisher_;
+  std_msgs::msg::UInt8 event_msg_;
+  int last_event_ = 0;
 };
 }  // namespace kuka_controllers
-#endif  // CONTROL_MODE_HANDLER__CONTROL_MODE_HANDLER_HPP_
+#endif  // EVENT_BROADCASTER__EVENT_BROADCASTER_HPP_
