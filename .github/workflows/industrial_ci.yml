@@ -12,20 +12,12 @@ on:
       - master
       - feature/**
       - fix/**
-    paths-ignore:
-      - doc/**
-      - '**.md'
-      - LICENSE
-  # When there is a pull request against main
+  # When there is a pull request against master
   pull_request:
     branches:
-      - main
+      - master
       - feature/**
       - fix/**
-    paths-ignore:
-      - doc/**
-      - '**.md'
-      - LICENSE
 
 jobs:
   industrial_ci:
