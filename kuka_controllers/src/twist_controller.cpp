@@ -49,12 +49,16 @@ const
   config.names.emplace_back("twist/angular/x");
   config.names.emplace_back("twist/angular/y");
   config.names.emplace_back("twist/angular/z");
-  /*config.names.emplace_back("linear/x/position");
-  config.names.emplace_back("linear/y/position");
-  config.names.emplace_back("linear/z/position");
-  config.names.emplace_back("angular/x/position");
-  config.names.emplace_back("angular/y/position");
-  config.names.emplace_back("angular/z/position");*/
+  config.names.emplace_back("pose_2d/x");
+  config.names.emplace_back("pose_2d/y");
+  config.names.emplace_back("pose_2d/theta");
+  config.names.emplace_back("Pose/position/x");
+  config.names.emplace_back("Pose/position/y");
+  config.names.emplace_back("Pose/position/z");
+  config.names.emplace_back("Pose/orientation/x");
+  config.names.emplace_back("Pose/orientation/y");
+  config.names.emplace_back("Pose/orientation/z");
+  config.names.emplace_back("Pose/orientation/w");
 
   //config.names.emplace_back("twist");
 
@@ -95,15 +99,32 @@ controller_interface::return_type TwistController::update(
   const rclcpp::Duration &)
 {
 
-  
+
     command_interfaces_[0].set_value(last_command_msg_ .linear.x);
     command_interfaces_[1].set_value(last_command_msg_ .linear.y);
     command_interfaces_[2].set_value(last_command_msg_ .linear.z);
     command_interfaces_[3].set_value(last_command_msg_ .angular.x);
     command_interfaces_[4].set_value(last_command_msg_ .angular.y);
     command_interfaces_[5].set_value(last_command_msg_ .angular.z);
+       
+    static tf2_ros::TransformBroadcaster tf_broadcaster(get_node());
 
-  
+    geometry_msgs::msg::TransformStamped transformStamped;
+    //transformStamped.header.stamp=Time::now();
+    transformStamped.header.frame_id="odom";
+    transformStamped.child_frame_id="generic_mr_body_dummy";
+    transformStamped.transform.translation.x=state_interfaces_[9].get_value();
+    transformStamped.transform.translation.y=state_interfaces_[10].get_value();
+    transformStamped.transform.translation.z=0.0;
+   
+    transformStamped.transform.rotation.x=state_interfaces_[12].get_value();
+    transformStamped.transform.rotation.y=state_interfaces_[13].get_value();
+    transformStamped.transform.rotation.z=state_interfaces_[14].get_value();
+    transformStamped.transform.rotation.w=state_interfaces_[15].get_value(); 
+    
+    tf2::Quaternion q;
+    q.setRPY(0,0,state_interfaces_[8].get_value());
+    tf_broadcaster.sendTransform(transformStamped);
   return controller_interface::return_type::OK;
 }
 
