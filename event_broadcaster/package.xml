@@ -3,7 +3,7 @@
 <package format="3">
   <name>event_broadcaster</name>
   <version>0.9.0</version>
-  <description>Broadcaster for FRI state</description>
+  <description>Broadcaster of hardware events of KUKA robots</description>
 
   <maintainer email="svastits1@gmail.com">Aron Svastits</maintainer>
 
@@ -13,9 +13,6 @@
 
   <depend>controller_interface</depend>
   <depend>pluginlib</depend>
-  <depend>rclcpp_lifecycle</depend>
-  <depend>std_msgs</depend>
-  <depend>kuka_driver_interfaces</depend>
   <depend>kuka_drivers_core</depend>
 
   <export>

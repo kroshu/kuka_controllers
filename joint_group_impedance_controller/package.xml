@@ -3,7 +3,7 @@
 <package format="3">
   <name>joint_group_impedance_controller</name>
   <version>0.9.0</version>
-  <description>Controller for managing the timing of the FRI hardware interface</description>
+  <description>Controller for modifying impedance (stiffness and damping) interfaces of a joint group</description>
 
   <maintainer email="svastits1@gmail.com">Aron Svastits</maintainer>
 
@@ -11,11 +11,10 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>controller_interface</depend>
+  <depend>forward_command_controller</depend>
   <depend>pluginlib</depend>
-  <depend>rclcpp_lifecycle</depend>
-  <depend>std_msgs</depend>
   <depend>kuka_drivers_core</depend>
+  <depend>generate_parameter_library</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

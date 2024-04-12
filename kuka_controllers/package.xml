@@ -2,7 +2,7 @@
 <package format="2">
   <name>kuka_controllers</name>
   <version>0.9.0</version>
-  <description>ROS2 Controllers for KUKA robots</description>
+  <description>ROS2 controllers for KUKA robots</description>
   <maintainer email="svastits1@gmail.com">Aron Svastits</maintainer>
   <license>Apache-2.0</license>
 
@@ -13,6 +13,7 @@
 
   <exec_depend>control_mode_handler</exec_depend>
   <exec_depend>effort_controllers</exec_depend>
+  <exec_depend>event_broadcaster</exec_depend>
   <exec_depend>fri_configuration_controller</exec_depend>
   <exec_depend>fri_state_broadcaster</exec_depend>
   <exec_depend>joint_group_impedance_controller</exec_depend>

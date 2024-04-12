@@ -8,8 +8,6 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(controller_interface REQUIRED)
 find_package(pluginlib REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(rclcpp_lifecycle REQUIRED)
 find_package(kuka_drivers_core REQUIRED)
 
 include_directories(include)
@@ -21,7 +19,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
   include
 )
 
-ament_target_dependencies(${PROJECT_NAME} rclcpp controller_interface std_msgs kuka_drivers_core
+ament_target_dependencies(${PROJECT_NAME} controller_interface std_msgs kuka_drivers_core
 )
 
 # Causes the visibility macros to use dllexport rather than dllimport,

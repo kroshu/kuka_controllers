@@ -24,7 +24,6 @@
 #include "pluginlib/class_list_macros.hpp"
 #include "rclcpp/duration.hpp"
 #include "rclcpp/time.hpp"
-#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 #include "std_msgs/msg/u_int32.hpp"
 
 #include "control_mode_handler/visibility_control.h"

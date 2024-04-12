@@ -20,7 +20,6 @@
 #include <vector>
 
 #include "forward_command_controller/multi_interface_forward_command_controller.hpp"
-#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 
 #include "joint_group_impedance_controller/visibility_control.h"
 #include "joint_group_impedance_controller_parameters.hpp"
