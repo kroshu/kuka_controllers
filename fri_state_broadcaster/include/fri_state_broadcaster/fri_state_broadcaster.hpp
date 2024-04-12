@@ -1,4 +1,4 @@
-// Copyright 2022 Áron Svastits
+// Copyright 2022 Aron Svastits
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@
 #include "pluginlib/class_list_macros.hpp"
 #include "rclcpp/duration.hpp"
 #include "rclcpp/time.hpp"
-#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 
 #include "fri_state_broadcaster/visibility_control.h"
 

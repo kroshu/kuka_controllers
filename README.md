@@ -24,22 +24,6 @@ ros2 topic pub /joint_group_impedance_controller/commands std_msgs/msg/Float64Mu
 __Required parameters__:
 - `joints` [string_array]: Names of joints used by the controller
 
-#### `effort_controllers`
-This package is available in the `ros2_controllers` repo, however the `JointGroupPositionController` was not ported to `humble`, at the time of writing only a [draft PR](https://github.com/ros-controls/ros2_controllers/pull/198) exists for it. To add this functionality, the contents of the PR were copied here.
-
-The `effort_controllers/JointGroupEffortController` is a command forwarding controller for torque command interfaces. It accepts torque input on the `~/command` topic and updates the configured torque command interfaces without checking for limits.
-
-__Required parameters__:
-- `joints` [string_array]: Names of joints used by the controller
-
-The `effort_controllers/JointGroupPositionController` implements a PID controller: it accepts position input and calculates the needed torques according to the PID parameters for every controlled joint
-
-__Required parameters__:
-- `joints` [string_array]: Names of joints used by the controller
-- `gains/<joint_name>/p` [double]: Proportional term of the controller for *joint_name*
-- `gains/<joint_name>/i` [double]: Integral term of the controller for *joint_name*
-- `gains/<joint_name>/d` [double]: Derivative term of the controller for *joint_name*
-
 ## Broadcasters
 
 Broadcasters receive the state interfaces of a hardware and publish it to a ROS2 topic.

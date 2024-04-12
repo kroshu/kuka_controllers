@@ -1,4 +1,4 @@
-// Copyright 2022 Áron Svastits
+// Copyright 2022 Aron Svastits
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
 
 #include "pluginlib/class_list_macros.hpp"
 
-#include "controller_interface/controller_interface.hpp"
 #include "kuka_drivers_core/hardware_interface_types.hpp"
 
 #include "joint_group_impedance_controller/joint_group_impedance_controller.hpp"

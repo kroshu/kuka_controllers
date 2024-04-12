@@ -1,4 +1,4 @@
-// Copyright 2022 Áron Svastits
+// Copyright 2022 Aron Svastits
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@
 #include <vector>
 
 #include "forward_command_controller/multi_interface_forward_command_controller.hpp"
-#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
 
 #include "joint_group_impedance_controller/visibility_control.h"
 #include "joint_group_impedance_controller_parameters.hpp"
